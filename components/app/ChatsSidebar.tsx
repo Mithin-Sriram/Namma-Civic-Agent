@@ -100,19 +100,20 @@ export function ChatsSidebar({ chats }: ChatsSidebarProps) {
   };
 
   return (
-    <div className="flex h-full w-64 flex-col border-r border-border bg-sidebar">
-      <div className="px-3 pt-4 pb-3">
+    <div className="flex h-full w-14 shrink-0 flex-col border-r border-border bg-sidebar sm:w-64">
+      <div className="px-1.5 pt-4 pb-3 sm:px-3">
         <button
           onClick={handleNewChat}
           disabled={isLoading}
           className={cn(
-            "w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-sidebar-foreground hover:bg-sidebar-accent/50 transition-colors cursor-pointer",
+            "w-full flex items-center justify-center gap-2 rounded-lg px-0 py-2 text-sm text-sidebar-foreground transition-colors hover:bg-sidebar-accent/50 cursor-pointer sm:justify-start sm:px-3",
             isLoading && "opacity-50 cursor-not-allowed"
           )}
           aria-label="New chat"
+          title="New chat"
         >
-          <Pencil className="h-4 w-4" />
-          <span>New chat</span>
+          <Pencil className="h-4 w-4 shrink-0" />
+          <span className="hidden sm:inline">New chat</span>
         </button>
       </div>
       
@@ -130,8 +131,8 @@ export function ChatsSidebar({ chats }: ChatsSidebarProps) {
             </p>
           </div>
         ) : (
-          <div className="px-3 pt-4 pb-2">
-            <h3 className="text-[10px] font-medium text-muted-foreground mb-3 px-2 uppercase tracking-wider">Your chats</h3>
+          <div className="px-1.5 pt-4 pb-2 sm:px-3">
+            <h3 className="mb-3 hidden px-2 text-[10px] font-medium uppercase tracking-wider text-muted-foreground sm:block">Your chats</h3>
             <div className="space-y-1">
             {localChats.map((chat) => {
               const isActive = pathname === `/chats/${chat.id}`;
@@ -199,24 +200,26 @@ export function ChatsSidebar({ chats }: ChatsSidebarProps) {
                       <Link
                         href={`/chats/${chat.id}`}
                         className={cn(
-                          "flex items-center gap-3 rounded-lg px-3 py-2 text-sm flex-1 min-w-0 transition-colors cursor-pointer",
+                          "flex flex-1 min-w-0 items-center justify-center gap-0 rounded-lg px-2 py-2 text-sm transition-colors cursor-pointer sm:justify-start sm:gap-3 sm:px-3",
                           isActive 
                             ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium" 
                             : "hover:bg-sidebar-accent/50"
                         )}
+                        title={chat.title}
+                        aria-label={chat.title}
                       >
                         <MessageSquare className={cn(
                           "h-4 w-4 shrink-0",
                           isActive && "text-sidebar-accent-foreground"
                         )} />
                         <span className={cn(
-                          "truncate flex-1",
+                          "hidden truncate sm:inline sm:flex-1",
                           isActive && "font-medium"
                         )}>{chat.title}</span>
                       </Link>
                       <div 
                         className={cn(
-                          "pr-2 transition-opacity duration-150 shrink-0",
+                          "hidden pr-2 transition-opacity duration-150 shrink-0 sm:block",
                           isHovered ? "opacity-100" : "opacity-0"
                         )}
                       >
@@ -284,8 +287,8 @@ export function ChatsSidebar({ chats }: ChatsSidebarProps) {
         )}
       </div>
 
-      <div className="border-t border-border/50 bg-sidebar/50 px-3 flex items-center justify-between h-14">
-        <div className="flex-1 min-w-0 flex flex-col justify-center">
+      <div className="flex h-14 items-center justify-center border-t border-border/50 bg-sidebar/50 px-1 sm:justify-between sm:px-3">
+        <div className="hidden min-w-0 flex-1 flex-col justify-center sm:flex">
           <p className="text-sm font-semibold text-sidebar-foreground truncate leading-tight">
             Local User
           </p>

@@ -100,9 +100,9 @@ export default async function ChatsPage({ searchParams }: ChatsPageProps) {
   }
 
   return (
-    <div className="flex h-full">
+    <div className="flex h-full min-w-0">
       <ChatsSidebar chats={formattedChats} />
-      <div className="flex-1">
+      <div className="min-w-0 flex-1">
         <ChatEmptyState />
       </div>
     </div>

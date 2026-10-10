@@ -34,8 +34,8 @@ export function Hero({ hero }: HeroProps) {
   };
 
   return (
-    <section className="min-h-screen grid grid-rows-[1fr_auto_1fr] items-center text-center px-4 py-6 md:py-12">
-      <div className="w-full max-w-2xl self-end space-y-4 md:space-y-6 pb-4">
+    <section className="grid min-h-screen w-full grid-cols-1 grid-rows-[1fr_auto_1fr] items-center justify-items-center px-4 py-6 text-center md:py-12">
+      <div className="w-full min-w-0 max-w-2xl self-end space-y-4 pb-4 md:space-y-6">
         <div className="flex items-center justify-center">
           <div className="relative flex h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm">
             <Image
@@ -66,7 +66,7 @@ export function Hero({ hero }: HeroProps) {
         </div>
       </div>
 
-      <div className="w-full max-w-2xl">
+      <div className="w-full min-w-0 max-w-2xl">
         <div className="flex flex-col sm:flex-row gap-2 rounded-xl border border-border bg-background p-4 shadow-lg">
           <Input
             value={inputValue}
@@ -80,7 +80,7 @@ export function Hero({ hero }: HeroProps) {
         </div>
       </div>
 
-      <div className="w-full max-w-2xl self-start pt-8 space-y-2.5 sm:space-y-3">
+      <div className="w-full min-w-0 max-w-2xl self-start pt-8 space-y-2.5 sm:space-y-3">
         <p className="text-[10px] sm:text-[11px] font-medium uppercase tracking-wide text-muted-foreground text-center">
           {hero.exampleLabel}
         </p>
