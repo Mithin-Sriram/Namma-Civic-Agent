@@ -1,4 +1,5 @@
 import { AI_CONFIG } from "@/config/ai";
+import { getOpenRouterApiKey } from "@/lib/ai/openrouter";
 import { CIVIC_SYSTEM_PROMPT } from "@/lib/ai/prompts";
 import type {
   WebSearchAttribution,
@@ -97,12 +98,15 @@ export async function searchTamilNaduGovernmentWeb(
   query: string,
   fetcher: typeof fetch = fetch
 ): Promise<WebSearchResult> {
-  if (!process.env.OPENROUTER_API_KEY) {
+  let apiKey: string;
+  try {
+    apiKey = getOpenRouterApiKey();
+  } catch {
     return buildResult(
       "unavailable",
       "",
       [],
-      "Live web search is not configured because OPENROUTER_API_KEY is unavailable."
+      "Live web search is not configured because an OpenRouter API key is unavailable."
     );
   }
 
@@ -115,7 +119,7 @@ export async function searchTamilNaduGovernmentWeb(
     const response = await fetcher(OPENROUTER_CHAT_URL, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
         "HTTP-Referer": process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
         "X-Title": "Namma-Civic-Agent",

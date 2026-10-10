@@ -143,6 +143,16 @@ export function useSendMessage({
                   onStreamChunk?.(parsed.chunk, parsed.messageId || "");
                 }
 
+                if (parsed.type === "error") {
+                  const streamError = new Error(
+                    typeof parsed.error === "string"
+                      ? parsed.error
+                      : "Unable to complete the response. Please try again."
+                  );
+                  streamError.name = "ChatStreamError";
+                  throw streamError;
+                }
+
                 if (
                   parsed.type === "tnInfo" &&
                   parsed.attribution &&
@@ -169,7 +179,10 @@ export function useSendMessage({
                   civicWorkflow = parsed.workflow;
                   onWorkflow?.(parsed.workflow, parsed.messageId);
                 }
-              } catch (e) {
+              } catch (error) {
+                if (error instanceof Error && error.name === "ChatStreamError") {
+                  throw error;
+                }
               }
             }
           }
