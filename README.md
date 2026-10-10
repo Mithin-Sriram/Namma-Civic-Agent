@@ -8,10 +8,6 @@ The civic assistant is focused specifically on Tamil Nadu, India. TN-Info is use
 
 ---
 
-## Overview
-
----
-
 ## What it does
 
 **Chat interface with streaming responses**
