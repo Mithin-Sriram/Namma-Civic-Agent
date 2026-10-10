@@ -3,6 +3,7 @@ import { ChatView } from "@/components/app/ChatView";
 import { prisma } from "@/lib/prisma";
 import { checkDatabaseConnection, getOrCreateUser } from "@/lib/db";
 import { redirect } from "next/navigation";
+import { parseTNInfoAttribution } from "@/lib/tn-info/types";
 
 interface ChatPageProps {
   params: Promise<{ id: string }>;
@@ -93,6 +94,7 @@ export default async function ChatPage({ params, searchParams }: ChatPageProps) 
     role: msg.role as "user" | "assistant",
     content: msg.content,
     createdAt: msg.createdAt,
+    tnInfo: parseTNInfoAttribution(msg.metadata),
     attachments: (msg.attachments || []).length > 0 ? (msg.attachments || []).map((file: any) => ({
       id: file.id,
       filename: file.filename,

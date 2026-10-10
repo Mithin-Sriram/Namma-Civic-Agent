@@ -11,6 +11,7 @@ import { InsightsSidebar } from "./InsightsSidebar";
 import { FileUpload } from "./FileUpload";
 import { MessageContent } from "./MessageContent";
 import { CHAT_CONFIG } from "@/config/chat";
+import type { TNInfoAttribution } from "@/lib/tn-info/types";
 
 interface Message {
   id: string;
@@ -18,6 +19,7 @@ interface Message {
   content: string;
   createdAt: Date;
   attachments?: Array<{ id: string; filename: string; originalName: string; mimeType: string; size: number }>;
+  tnInfo?: TNInfoAttribution;
 }
 
 interface ChatViewProps {
@@ -25,6 +27,13 @@ interface ChatViewProps {
   initialMessages?: Message[];
   chatTitle?: string;
   initialQuery?: string;
+}
+
+function formatTNInfoTimestamp(value: string): string {
+  const timestamp = new Date(value);
+  return Number.isNaN(timestamp.getTime())
+    ? value
+    : `${timestamp.toISOString().slice(0, 19).replace("T", " ")} UTC`;
 }
 
 export function ChatView({ chatId, initialMessages = [], chatTitle, initialQuery }: ChatViewProps) {
@@ -142,6 +151,11 @@ export function ChatView({ chatId, initialMessages = [], chatTitle, initialQuery
         setTimeout(() => scrollToBottom(false), 50);
       }
     },
+    onTNInfo: (attribution, messageId) => {
+      setMessages((prev) => prev.map((item) =>
+        item.id === messageId ? { ...item, tnInfo: attribution } : item
+      ));
+    },
     onError: (errorMessage) => {
       setStreamingMessageId(null);
       const errorMsg: Message = {
@@ -230,7 +244,7 @@ export function ChatView({ chatId, initialMessages = [], chatTitle, initialQuery
             </h3>
           </div>
           <p className="text-sm text-muted-foreground max-w-md mx-auto">
-            Ask questions about public services, government schemes, or civic information across multiple countries.
+            Ask about Tamil Nadu schemes, districts, public services, and civic processes.
           </p>
         </div>
         <div className="space-y-3">
@@ -301,6 +315,35 @@ export function ChatView({ chatId, initialMessages = [], chatTitle, initialQuery
               </div>
             )}
             {msg.content && <MessageContent content={msg.content} isUser={msg.role === "user"} />}
+            {msg.tnInfo && (
+              <div className="mt-3 border-t border-border/60 pt-3 text-xs">
+                <p className="font-medium">Source: TN-Info (independent, best-effort data)</p>
+                <p className="mt-1 text-muted-foreground">{msg.tnInfo.note}</p>
+                {msg.tnInfo.updatedAt && (
+                  <p className="mt-1 text-muted-foreground">
+                    Data updated: {formatTNInfoTimestamp(msg.tnInfo.updatedAt)}
+                  </p>
+                )}
+                <p className="mt-1 text-muted-foreground">
+                  {msg.tnInfo.status === "success" ? "Retrieved" : "Checked"}:{" "}
+                  {formatTNInfoTimestamp(msg.tnInfo.retrievedAt)}
+                </p>
+                <ul className="mt-2 space-y-1">
+                  {msg.tnInfo.sources.map((source) => (
+                    <li key={source.url}>
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary underline underline-offset-2"
+                      >
+                        {source.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       ))}
@@ -448,4 +491,3 @@ export function ChatView({ chatId, initialMessages = [], chatTitle, initialQuery
     </div>
   );
 }
-

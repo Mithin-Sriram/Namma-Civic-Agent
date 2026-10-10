@@ -4,6 +4,8 @@ Bringing clarity to public services for everyone.
 
 Namma-Civic-Agent is a chat-based platform that helps people find answers about government schemes, public services, and civic processes. Instead of digging through government websites, you can just ask questions in plain English and get clear answers.
 
+The civic assistant is focused specifically on Tamil Nadu, India. TN-Info is used as an independent reference for documented civic-data categories; official state and Union government sources remain the final reference for current rules and procedures.
+
 ---
 
 ## Overview
@@ -15,7 +17,7 @@ Namma-Civic-Agent is a chat-based platform that helps people find answers about 
 ## What it does
 
 **Chat interface with streaming responses**
-Ask questions about government schemes, eligibility, or how to apply for benefits. Responses stream in real-time using OpenRouter. Works for multiple countries including India, USA, UK, Canada, and Australia.
+Ask questions about Tamil Nadu government schemes, eligibility, public services, or how to apply for benefits. Responses stream in real time using OpenRouter, with TN-Info retrieval for supported civic-data questions.
 
 **File uploads**
 Upload PDFs or documents related to government schemes, and the system extracts relevant information to help answer your questions.
@@ -129,6 +131,24 @@ npm run dev
 pip install oumi[gpu]
 oumi train -c oumi/config.yaml
 ```
+
+### TN-Info civic data
+
+The chat backend checks Tamil Nadu scheme questions, explicit district lookups, TNEA counselling, district election questions, and city-specific event questions against the GET endpoints documented at [tn-info.in/#api](https://www.tn-info.in/#api). Requests use `https://api.tn-info.in` directly from the server, with a 7-second timeout and a 5-minute Next.js cache. TN-Info documents these endpoints as public and unauthenticated; no TN-Info environment variable or API key is needed.
+
+For matching questions, the retrieved JSON is provided to the existing OpenRouter model as untrusted reference data. The response includes TN-Info attribution, valid source links supplied in the response, and update/retrieval timestamps when available. If the API is unavailable, returns empty data, or the request is unsupported, the backend returns a clear fallback instead of asking the model to fill in missing facts. TN-Info is an independent best-effort source, not a government website; verify important details with official sources.
+
+Currently supported documented routes:
+
+* `GET /v1/districts/{id}` for district details
+* `GET /v1/districts/{id}/election/2024` for the documented 2024 district election example
+* `GET /v1/schemes` for schemes
+* `GET /v1/counselling/tnea/rounds` for TNEA counselling rounds
+* `GET /v1/events?city={city}` for city-filtered events
+
+The integration deliberately does not infer undocumented endpoints or election years. For example, election lookups other than 2024 are reported as unsupported by the documented source.
+
+To test manually, run the app and ask: “Show me information about the Madurai district,” “What are the TNEA counselling rounds?”, “Show me public events in Madurai,” or “Tell me about government schemes available in Tamil Nadu.” The response should include a TN-Info source card. Non-TN-Info questions continue through the existing chatbot flow.
 
 ---
 

@@ -13,9 +13,10 @@ import { OUMI_CONFIG } from "@/config/oumi";
 export async function getChatCompletion(
   userQuery: string,
   conversationHistory: Array<{ role: "user" | "assistant"; content: string }> = [],
-  useFineTuned: boolean = false
+  useFineTuned: boolean = false,
+  externalContext?: string
 ): Promise<string> {
-  if ((useFineTuned || OUMI_CONFIG.enabled) && OUMI_CONFIG.isModelAvailable()) {
+  if (!externalContext && (useFineTuned || OUMI_CONFIG.enabled) && OUMI_CONFIG.isModelAvailable()) {
     try {
       const result = await queryOumiModel({
         query: userQuery,
@@ -28,7 +29,7 @@ export async function getChatCompletion(
     }
   }
 
-  const messages = getChatMessages(userQuery, conversationHistory);
+  const messages = getChatMessages(userQuery, conversationHistory, externalContext);
 
   try {
     return await openRouterChatCompletion({ messages });
@@ -41,9 +42,10 @@ export async function getChatCompletion(
 export async function* getChatStream(
   userQuery: string,
   conversationHistory: Array<{ role: "user" | "assistant"; content: string }> = [],
-  useFineTuned: boolean = false
+  useFineTuned: boolean = false,
+  externalContext?: string
 ): AsyncGenerator<string, void, unknown> {
-  if ((useFineTuned || OUMI_CONFIG.enabled) && OUMI_CONFIG.isModelAvailable()) {
+  if (!externalContext && (useFineTuned || OUMI_CONFIG.enabled) && OUMI_CONFIG.isModelAvailable()) {
     try {
       const result = await queryOumiModel({
         query: userQuery,
@@ -61,13 +63,13 @@ export async function* getChatStream(
     }
   }
 
-  const messages = getChatMessages(userQuery, conversationHistory);
+  const messages = getChatMessages(userQuery, conversationHistory, externalContext);
 
   try {
     yield* openRouterChatStream({ messages });
   } catch (error) {
     console.error("OpenRouter streaming error:", error);
-    const response = await getChatCompletion(userQuery, conversationHistory, useFineTuned);
+    const response = await getChatCompletion(userQuery, conversationHistory, useFineTuned, externalContext);
     for (const char of response) {
       yield char;
       await new Promise((resolve) => setTimeout(resolve, 10));
