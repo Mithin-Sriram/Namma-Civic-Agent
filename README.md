@@ -10,8 +10,6 @@ The civic assistant is focused specifically on Tamil Nadu, India. TN-Info is use
 
 ## Overview
 
-<img width="729" height="459" alt="Namma-Civic-Agent overview" src="https://github.com/user-attachments/assets/74d21102-951d-4b4f-ad86-f01a32496873" />
-
 ---
 
 ## What it does
