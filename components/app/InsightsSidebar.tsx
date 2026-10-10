@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Sparkles, Building2, FileText, MapPin, CheckCircle, X } from "lucide-react";
+import { Sparkles, Building2, FileText, CheckCircle, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -12,11 +12,50 @@ interface InsightsSidebarProps {
   onClose?: () => void;
 }
 
+type EntityItem = string | { type?: string; name?: string; [key: string]: unknown };
+
 interface ExtractedData {
-  entities: Array<string | { type?: string; name?: string }>;
-  intent: string;
-  key_points: string[];
-  suggested_actions: string[];
+  entities?: EntityItem[];
+  intent?: string | { name?: string; type?: string; [key: string]: unknown };
+  key_points?: (string | Record<string, unknown>)[];
+  suggested_actions?: (string | Record<string, unknown>)[];
+}
+
+function formatEntity(entity: unknown): string {
+  if (typeof entity === "string") return entity;
+  if (entity && typeof entity === "object") {
+    const e = entity as Record<string, unknown>;
+    const name = typeof e.name === "string" ? e.name : "";
+    const type = typeof e.type === "string" ? e.type : "";
+    if (name && type) return [name, type].filter(Boolean).join(" · ");
+    if (name) return name;
+    if (type) return type;
+    const firstVal = Object.values(e).find((v) => typeof v === "string");
+    if (typeof firstVal === "string") return firstVal;
+  }
+  return String(entity ?? "");
+}
+
+function formatTextItem(item: unknown): string {
+  if (typeof item === "string") return item;
+  if (item && typeof item === "object") {
+    const obj = item as Record<string, unknown>;
+    const candidate = obj.point || obj.action || obj.text || obj.title || obj.description || obj.name;
+    if (typeof candidate === "string") return candidate;
+    const firstVal = Object.values(obj).find((v) => typeof v === "string");
+    if (typeof firstVal === "string") return firstVal;
+  }
+  return String(item ?? "");
+}
+
+function formatIntent(intent: unknown): string {
+  if (typeof intent === "string") return intent.replace(/_/g, " ");
+  if (intent && typeof intent === "object") {
+    const obj = intent as Record<string, unknown>;
+    const name = typeof obj.name === "string" ? obj.name : typeof obj.type === "string" ? obj.type : "";
+    if (name) return name.replace(/_/g, " ");
+  }
+  return String(intent || "general info").replace(/_/g, " ");
 }
 
 export function InsightsSidebar({ query, className, onClose }: InsightsSidebarProps) {
@@ -59,6 +98,10 @@ export function InsightsSidebar({ query, className, onClose }: InsightsSidebarPr
     return null;
   }
 
+  const entities = Array.isArray(insights?.entities) ? insights.entities : [];
+  const keyPoints = Array.isArray(insights?.key_points) ? insights.key_points : [];
+  const suggestedActions = Array.isArray(insights?.suggested_actions) ? insights.suggested_actions : [];
+
   return (
     <div className={cn("border-l border-border bg-muted/30 flex flex-col h-full", className)}>
       <div className="flex items-center justify-between gap-2 p-4 pb-3 border-b border-border/50 shrink-0">
@@ -84,64 +127,64 @@ export function InsightsSidebar({ query, className, onClose }: InsightsSidebarPr
         <div className="text-sm text-muted-foreground">Analyzing query...</div>
       ) : insights ? (
         <>
-          {insights.entities.length > 0 && (
+          {entities.length > 0 && (
             <div>
               <h4 className="text-xs font-medium mb-2 text-muted-foreground flex items-center gap-1">
                 <Building2 className="h-3 w-3" />
                 Entities
               </h4>
               <div className="flex flex-wrap gap-2">
-                {insights.entities.map((entity, idx) => (
+                {entities.map((entity, idx) => (
                   <Badge key={idx} variant="secondary" className="text-xs">
-                    {typeof entity === "string"
-                      ? entity
-                      : [entity.name, entity.type].filter(Boolean).join(" · ")}
+                    {formatEntity(entity)}
                   </Badge>
                 ))}
               </div>
             </div>
           )}
 
-          {insights.key_points.length > 0 && (
+          {keyPoints.length > 0 && (
             <div>
               <h4 className="text-xs font-medium mb-2 text-muted-foreground flex items-center gap-1">
                 <CheckCircle className="h-3 w-3" />
                 Key Points
               </h4>
               <ul className="space-y-2">
-                {insights.key_points.map((point, idx) => (
+                {keyPoints.map((point, idx) => (
                   <li key={idx} className="text-xs text-foreground flex items-start gap-2">
                     <CheckCircle className="h-3 w-3 mt-0.5 text-primary shrink-0" />
-                    <span>{point}</span>
+                    <span>{formatTextItem(point)}</span>
                   </li>
                 ))}
               </ul>
             </div>
           )}
 
-          {insights.suggested_actions.length > 0 && (
+          {suggestedActions.length > 0 && (
             <div>
               <h4 className="text-xs font-medium mb-2 text-muted-foreground flex items-center gap-1">
                 <FileText className="h-3 w-3" />
                 Suggested Actions
               </h4>
               <ul className="space-y-2">
-                {insights.suggested_actions.map((action, idx) => (
+                {suggestedActions.map((action, idx) => (
                   <li key={idx} className="text-xs text-foreground flex items-start gap-2">
                     <FileText className="h-3 w-3 mt-0.5 text-primary shrink-0" />
-                    <span>{action}</span>
+                    <span>{formatTextItem(action)}</span>
                   </li>
                 ))}
               </ul>
             </div>
           )}
 
-          <div>
-            <h4 className="text-xs font-medium mb-2 text-muted-foreground">Intent</h4>
-            <Badge variant="default" className="text-xs capitalize">
-              {insights.intent.replace(/_/g, " ")}
-            </Badge>
-          </div>
+          {insights.intent ? (
+            <div>
+              <h4 className="text-xs font-medium mb-2 text-muted-foreground">Intent</h4>
+              <Badge variant="default" className="text-xs capitalize">
+                {formatIntent(insights.intent)}
+              </Badge>
+            </div>
+          ) : null}
         </>
       ) : null}
       </div>

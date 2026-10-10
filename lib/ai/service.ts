@@ -118,7 +118,54 @@ export async function extractEntities(query: string): Promise<{
 
     const jsonMatch = response.match(/\{[\s\S]*\}/);
     if (jsonMatch) {
-      return JSON.parse(jsonMatch[0]);
+      const parsed = JSON.parse(jsonMatch[0]);
+
+      const normalizeStringList = (items: unknown): string[] => {
+        if (!Array.isArray(items)) return [];
+        return items
+          .map((item) => {
+            if (typeof item === "string") return item.trim();
+            if (item && typeof item === "object") {
+              const obj = item as Record<string, unknown>;
+              if (typeof obj.name === "string" && obj.name.trim()) {
+                return typeof obj.type === "string" && obj.type.trim()
+                  ? `${obj.name.trim()} (${obj.type.trim()})`
+                  : obj.name.trim();
+              }
+              const candidate = obj.point || obj.action || obj.text || obj.title || obj.description;
+              if (typeof candidate === "string" && candidate.trim()) return candidate.trim();
+              const firstVal = Object.values(obj).find((v) => typeof v === "string" && v.trim());
+              if (typeof firstVal === "string") return firstVal.trim();
+            }
+            return "";
+          })
+          .filter(Boolean);
+      };
+
+      const entities = Array.isArray(parsed.entities)
+        ? normalizeStringList(parsed.entities)
+        : parsed.entities && typeof parsed.entities === "object"
+        ? Object.entries(parsed.entities).flatMap(([k, v]) =>
+            Array.isArray(v)
+              ? v.map((item) => (typeof item === "string" ? `${item.trim()} (${k})` : String(item)))
+              : typeof v === "string"
+              ? [`${v.trim()} (${k})`]
+              : []
+          )
+        : [];
+
+      const intent = typeof parsed.intent === "string"
+        ? parsed.intent
+        : (parsed.intent && typeof parsed.intent === "object" && typeof parsed.intent.name === "string"
+            ? parsed.intent.name
+            : "general_info");
+
+      return {
+        entities,
+        intent,
+        key_points: normalizeStringList(parsed.key_points),
+        suggested_actions: normalizeStringList(parsed.suggested_actions),
+      };
     }
 
     throw new Error("No JSON found in response");
