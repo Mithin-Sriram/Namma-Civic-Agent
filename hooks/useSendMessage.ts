@@ -1,5 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import type { TNInfoAttribution } from "@/lib/tn-info/types";
+import type { WebSearchAttribution } from "@/lib/web-search/types";
+import type { CivicWorkflow } from "@/lib/chat-workflow/types";
 
 interface Message {
   id: string;
@@ -7,6 +9,8 @@ interface Message {
   content: string;
   createdAt: Date;
   tnInfo?: TNInfoAttribution;
+  webSearch?: WebSearchAttribution;
+  workflow?: CivicWorkflow;
 }
 
 interface UseSendMessageOptions {
@@ -15,6 +19,8 @@ interface UseSendMessageOptions {
   onError?: (error: string) => void;
   onStreamChunk?: (chunk: string, messageId: string) => void;
   onTNInfo?: (attribution: TNInfoAttribution, messageId: string) => void;
+  onWebSearch?: (attribution: WebSearchAttribution, messageId: string) => void;
+  onWorkflow?: (workflow: CivicWorkflow, messageId: string) => void;
   stream?: boolean;
   fileIds?: string[];
 }
@@ -25,6 +31,8 @@ export function useSendMessage({
   onError,
   onStreamChunk,
   onTNInfo,
+  onWebSearch,
+  onWorkflow,
   stream = true,
   fileIds = []
 }: UseSendMessageOptions) {
@@ -72,6 +80,8 @@ export function useSendMessage({
         let assistantMessageId: string | null = null;
         let fullContent = "";
         let tnInfoAttribution: TNInfoAttribution | undefined;
+        let webSearchAttribution: WebSearchAttribution | undefined;
+        let civicWorkflow: CivicWorkflow | undefined;
 
         if (!reader) {
           throw new Error("No response body");
@@ -98,6 +108,8 @@ export function useSendMessage({
                     content: fullContent,
                     createdAt: new Date(),
                     tnInfo: tnInfoAttribution,
+                    webSearch: webSearchAttribution,
+                    workflow: civicWorkflow,
                   };
                   onSuccess?.(assistantMessage);
                 }
@@ -139,6 +151,24 @@ export function useSendMessage({
                   tnInfoAttribution = parsed.attribution;
                   onTNInfo?.(parsed.attribution, parsed.messageId);
                 }
+
+                if (
+                  parsed.type === "webSearch" &&
+                  parsed.attribution &&
+                  typeof parsed.messageId === "string"
+                ) {
+                  webSearchAttribution = parsed.attribution;
+                  onWebSearch?.(parsed.attribution, parsed.messageId);
+                }
+
+                if (
+                  parsed.type === "workflow" &&
+                  parsed.workflow &&
+                  typeof parsed.messageId === "string"
+                ) {
+                  civicWorkflow = parsed.workflow;
+                  onWorkflow?.(parsed.workflow, parsed.messageId);
+                }
               } catch (e) {
               }
             }
@@ -174,7 +204,7 @@ export function useSendMessage({
       }, 50);
       return { success: false, error: errorMessage, userMessage: tempUserMessage };
     }
-  }, [message, isLoading, chatId, onSuccess, onError, onStreamChunk, onTNInfo, stream, fileIds]);
+  }, [message, isLoading, chatId, onSuccess, onError, onStreamChunk, onTNInfo, onWebSearch, onWorkflow, stream, fileIds]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {

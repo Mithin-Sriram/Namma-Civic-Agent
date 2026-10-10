@@ -5,10 +5,16 @@ import { getChatStream } from "@/lib/ai/service";
 import { generateChatTitle } from "@/lib/ai/title";
 import { CHAT_CONFIG } from "@/config/chat";
 import { extractMultipleFileContents, formatFileContentsForPrompt } from "@/lib/files/extract";
-import { formatTNInfoUnavailableAnswer, lookupTNInfo } from "@/lib/tn-info/service";
+import { lookupTNInfo } from "@/lib/tn-info/service";
+import { isTamilNaduCivicQuestion, searchTamilNaduGovernmentWeb } from "@/lib/web-search/service";
+import { generateCivicWorkflowResponse } from "@/lib/chat-workflow/service";
 
 interface RouteParams {
   params: Promise<{ id: string }>;
+}
+
+async function* streamSingleAnswer(answer: string): AsyncGenerator<string, void, unknown> {
+  yield answer;
 }
 
 export async function POST(req: Request, { params }: RouteParams) {
@@ -63,8 +69,34 @@ export async function POST(req: Request, { params }: RouteParams) {
     const tnInfoResult = typeof content === "string" && content.trim()
       ? await lookupTNInfo(content)
       : null;
-    const messageMetadata = tnInfoResult
-      ? JSON.stringify({ tnInfo: tnInfoResult.attribution })
+    const webSearchResult =
+      typeof content === "string" &&
+      isTamilNaduCivicQuestion(content) &&
+      tnInfoResult?.attribution.status !== "success"
+        ? await searchTamilNaduGovernmentWeb(content)
+        : null;
+    const externalContext = [
+      tnInfoResult?.promptContext,
+      webSearchResult?.promptContext,
+    ].filter(Boolean).join("\n\n");
+    const workflowResponse = typeof content === "string" &&
+      isTamilNaduCivicQuestion(content)
+      ? await generateCivicWorkflowResponse(
+          enhancedContent,
+          externalContext,
+          webSearchResult?.answer ?? "",
+          chat.messages.map((msg) => ({
+            role: msg.role as "user" | "assistant",
+            content: msg.content,
+          }))
+        )
+      : null;
+    const messageMetadata = tnInfoResult || webSearchResult || workflowResponse
+      ? JSON.stringify({
+          ...(tnInfoResult ? { tnInfo: tnInfoResult.attribution } : {}),
+          ...(webSearchResult ? { webSearch: webSearchResult.attribution } : {}),
+          ...(workflowResponse ? { workflow: workflowResponse.workflow } : {}),
+        })
       : undefined;
     const userMessage = await prisma.message.create({
       data: {
@@ -153,15 +185,35 @@ export async function POST(req: Request, { params }: RouteParams) {
               );
             }
 
-            const answerStream = tnInfoResult && tnInfoResult.attribution.status !== "success"
-              ? (async function* () {
-                  yield formatTNInfoUnavailableAnswer(tnInfoResult);
-                })()
+            if (webSearchResult) {
+              controller.enqueue(
+                encoder.encode(`data: ${JSON.stringify({
+                  type: "webSearch",
+                  messageId: assistantMessage.id,
+                  attribution: webSearchResult.attribution,
+                })}\n\n`)
+              );
+            }
+
+            if (workflowResponse) {
+              controller.enqueue(
+                encoder.encode(`data: ${JSON.stringify({
+                  type: "workflow",
+                  messageId: assistantMessage.id,
+                  workflow: workflowResponse.workflow,
+                })}\n\n`)
+              );
+            }
+
+            const answerStream = workflowResponse
+              ? streamSingleAnswer(workflowResponse.answer)
+              : webSearchResult?.answer
+                ? streamSingleAnswer(webSearchResult.answer)
               : getChatStream(
                   enhancedContent,
                   conversationHistory,
                   false,
-                  tnInfoResult?.promptContext
+                  externalContext
                 );
 
             for await (const chunk of answerStream) {
@@ -199,15 +251,15 @@ export async function POST(req: Request, { params }: RouteParams) {
     }
 
     let fullContent = "";
-    const answerStream = tnInfoResult && tnInfoResult.attribution.status !== "success"
-      ? (async function* () {
-          yield formatTNInfoUnavailableAnswer(tnInfoResult);
-        })()
+    const answerStream = workflowResponse
+      ? streamSingleAnswer(workflowResponse.answer)
+      : webSearchResult?.answer
+        ? streamSingleAnswer(webSearchResult.answer)
       : getChatStream(
           enhancedContent,
           conversationHistory,
           false,
-          tnInfoResult?.promptContext
+          externalContext
         );
 
     for await (const chunk of answerStream) {
@@ -231,6 +283,8 @@ export async function POST(req: Request, { params }: RouteParams) {
         content: assistantMessage.content,
         createdAt: assistantMessage.createdAt,
         tnInfo: tnInfoResult?.attribution,
+        webSearch: webSearchResult?.attribution,
+        workflow: workflowResponse?.workflow,
       },
     });
   } catch (error) {
