@@ -8,6 +8,7 @@ import { extractMultipleFileContents, formatFileContentsForPrompt } from "@/lib/
 import { lookupTNInfo } from "@/lib/tn-info/service";
 import { isTamilNaduCivicQuestion, searchTamilNaduGovernmentWeb } from "@/lib/web-search/service";
 import { generateCivicWorkflowResponse } from "@/lib/chat-workflow/service";
+import { retrieveRagContext } from "@/lib/rag/retriever";
 
 interface RouteParams {
   params: Promise<{ id: string }>;
@@ -15,6 +16,10 @@ interface RouteParams {
 
 async function* streamSingleAnswer(answer: string): AsyncGenerator<string, void, unknown> {
   yield answer;
+}
+
+function isClosedStreamError(error: unknown): boolean {
+  return error instanceof TypeError && /controller is already closed/i.test(error.message);
 }
 
 export async function POST(req: Request, { params }: RouteParams) {
@@ -75,7 +80,15 @@ export async function POST(req: Request, { params }: RouteParams) {
       tnInfoResult?.attribution.status !== "success"
         ? await searchTamilNaduGovernmentWeb(content)
         : null;
+    // RAG retrieval: grounded knowledge base context
+    const ragResult = typeof content === "string" && content.trim()
+      ? await retrieveRagContext(content).catch((ragErr) => {
+          console.error("[RAG] Retrieval error (non-fatal):", ragErr);
+          return null;
+        })
+      : null;
     const externalContext = [
+      ragResult?.promptContext,
       tnInfoResult?.promptContext,
       webSearchResult?.promptContext,
     ].filter(Boolean).join("\n\n");
@@ -91,8 +104,9 @@ export async function POST(req: Request, { params }: RouteParams) {
           }))
         )
       : null;
-    const messageMetadata = tnInfoResult || webSearchResult || workflowResponse
+    const messageMetadata = tnInfoResult || webSearchResult || workflowResponse || ragResult
       ? JSON.stringify({
+          ...(ragResult ? { rag: { sources: ragResult.sources, chunkCount: ragResult.chunks.length } } : {}),
           ...(tnInfoResult ? { tnInfo: tnInfoResult.attribution } : {}),
           ...(webSearchResult ? { webSearch: webSearchResult.attribution } : {}),
           ...(workflowResponse ? { workflow: workflowResponse.workflow } : {}),
@@ -142,6 +156,20 @@ export async function POST(req: Request, { params }: RouteParams) {
       const stream = new ReadableStream({
         async start(controller) {
           let fullContent = "";
+          let streamFinished = false;
+
+          const closeStream = () => {
+            if (streamFinished) return;
+            streamFinished = true;
+
+            try {
+              controller.close();
+            } catch (error) {
+              if (!isClosedStreamError(error)) {
+                throw error;
+              }
+            }
+          };
 
           try {
             controller.enqueue(
@@ -233,10 +261,27 @@ export async function POST(req: Request, { params }: RouteParams) {
             });
 
             controller.enqueue(encoder.encode(`data: [DONE]\n\n`));
-            controller.close();
+            closeStream();
           } catch (error) {
+            if (isClosedStreamError(error)) {
+              return;
+            }
+
             console.error("Streaming error:", error);
-            controller.error(error);
+            try {
+              controller.enqueue(
+                encoder.encode(`data: ${JSON.stringify({
+                  type: "error",
+                  error: "Unable to complete the response. Please try again.",
+                })}\n\n`)
+              );
+              controller.enqueue(encoder.encode(`data: [DONE]\n\n`));
+              closeStream();
+            } catch (streamError) {
+              if (!isClosedStreamError(streamError)) {
+                console.error("Failed to close errored stream:", streamError);
+              }
+            }
           }
         },
       });

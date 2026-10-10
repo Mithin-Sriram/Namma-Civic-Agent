@@ -3,13 +3,25 @@ import { AI_CONFIG } from "@/config/ai";
 
 let openRouterClient: OpenAI | null = null;
 
+/**
+ * OPENAI_API_KEY was used by earlier local setups even though requests are
+ * sent to OpenRouter. Keep supporting it as a legacy alias so those setups
+ * continue to work, while preferring the documented OPENROUTER_API_KEY.
+ */
+export function getOpenRouterApiKey(): string {
+  const apiKey = process.env.OPENROUTER_API_KEY || process.env.OPENAI_API_KEY;
+
+  if (!apiKey) {
+    throw new Error("OPENROUTER_API_KEY is not configured");
+  }
+
+  return apiKey;
+}
+
 function getOpenRouterClient(): OpenAI {
   if (!openRouterClient) {
-    if (!process.env.OPENROUTER_API_KEY) {
-      throw new Error("OPENROUTER_API_KEY is not configured");
-    }
     openRouterClient = new OpenAI({
-      apiKey: process.env.OPENROUTER_API_KEY,
+      apiKey: getOpenRouterApiKey(),
       baseURL: "https://openrouter.ai/api/v1",
       defaultHeaders: {
         "HTTP-Referer": process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
@@ -37,10 +49,6 @@ export interface ChatOptions {
 export async function openRouterChatCompletion(
   options: ChatOptions
 ): Promise<string> {
-  if (!process.env.OPENROUTER_API_KEY) {
-    throw new Error("OPENROUTER_API_KEY is not configured");
-  }
-
   const client = getOpenRouterClient();
   const response = await client.chat.completions.create({
     model: options.model || AI_CONFIG.openrouter.defaultModel,
@@ -60,10 +68,6 @@ export async function openRouterChatCompletion(
 export async function* openRouterChatStream(
   options: ChatOptions
 ): AsyncGenerator<string, void, unknown> {
-  if (!process.env.OPENROUTER_API_KEY) {
-    throw new Error("OPENROUTER_API_KEY is not configured");
-  }
-
   const client = getOpenRouterClient();
   const stream = await client.chat.completions.create({
     model: options.model || AI_CONFIG.openrouter.defaultModel,
