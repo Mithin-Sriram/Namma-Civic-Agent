@@ -13,7 +13,7 @@ interface InsightsSidebarProps {
 }
 
 interface ExtractedData {
-  entities: string[];
+  entities: Array<string | { type?: string; name?: string }>;
   intent: string;
   key_points: string[];
   suggested_actions: string[];
@@ -93,7 +93,9 @@ export function InsightsSidebar({ query, className, onClose }: InsightsSidebarPr
               <div className="flex flex-wrap gap-2">
                 {insights.entities.map((entity, idx) => (
                   <Badge key={idx} variant="secondary" className="text-xs">
-                    {entity}
+                    {typeof entity === "string"
+                      ? entity
+                      : [entity.name, entity.type].filter(Boolean).join(" · ")}
                   </Badge>
                 ))}
               </div>
@@ -146,4 +148,3 @@ export function InsightsSidebar({ query, className, onClose }: InsightsSidebarPr
     </div>
   );
 }
-

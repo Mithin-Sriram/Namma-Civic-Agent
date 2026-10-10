@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Orb } from "@yogesharc/thinking-orbs";
 import { Send, X, Sparkles, Loader2, ChevronDown, Info, ListChecks, Circle, CheckCircle2, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSendMessage, useChatState } from "@/hooks";
@@ -412,8 +413,11 @@ export function ChatView({ chatId, initialMessages = [], chatTitle, initialQuery
           </p>
         </div>
       </div>
-      <div className="w-full max-w-3xl rounded-xl border border-border bg-background p-2 shadow-sm">
-        <div className="flex items-center gap-2">
+      <div className="w-full max-w-3xl rounded-2xl bg-gradient-to-r from-primary/35 via-primary/10 to-primary/35 p-px shadow-sm transition-shadow duration-300 focus-within:shadow-lg focus-within:shadow-primary/20">
+        <div className="flex items-center gap-2 rounded-[calc(var(--radius)+0.25rem)] border border-border/70 bg-background p-2">
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary" title={isLoading ? "Thinking" : "Ready"}>
+            <Orb state={isLoading ? "reasoning" : "base"} size={20} label={isLoading ? "Thinking" : "Ready"} />
+          </span>
           <Input
             ref={inputRef}
             type="text"
@@ -421,7 +425,7 @@ export function ChatView({ chatId, initialMessages = [], chatTitle, initialQuery
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={handleKeyDownWrapper}
             placeholder="Ask about any public service..."
-            className="flex-1 h-10 border-0 bg-transparent shadow-none focus-visible:ring-2 focus-visible:ring-primary/20 text-sm placeholder:text-muted-foreground"
+            className="h-10 flex-1 border-0 bg-transparent text-sm shadow-none focus-visible:ring-0 placeholder:text-muted-foreground"
             disabled={isLoading}
           />
           <FileUpload
@@ -591,7 +595,7 @@ export function ChatView({ chatId, initialMessages = [], chatTitle, initialQuery
         <div className="flex justify-start">
           <div className="max-w-[80%] rounded-2xl px-4 py-3 shadow-sm bg-muted/80 text-foreground border border-border/50 rounded-bl-md">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Loader2 className="h-4 w-4 animate-spin" />
+              <Orb state="reasoning" size={20} label="Thinking" className="text-primary" />
               <span>Thinking...</span>
             </div>
           </div>
@@ -694,61 +698,66 @@ export function ChatView({ chatId, initialMessages = [], chatTitle, initialQuery
             )}
           </div>
 
-          {messages.length > 0 && <div className="border-t border-border/50 bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60 flex items-center h-14 shrink-0">
-            <div className="max-w-3xl mx-auto w-full flex items-center gap-2 h-full">
-          {attachedFiles.length > 0 && (
-            <div className="flex flex-wrap gap-2 border-r border-border/50 pr-2 mr-2">
-              {attachedFiles.map((file) => (
-                <Badge
-                  key={file.id}
-                  variant="secondary"
-                  className="group flex items-center gap-2 px-2 py-1 text-xs"
+          {messages.length > 0 && (
+            <div className="flex h-auto min-h-16 shrink-0 items-center border-t border-border/50 bg-background/95 px-4 py-2 backdrop-blur-sm supports-backdrop-filter:bg-background/60">
+              <div className="mx-auto flex h-full w-full max-w-3xl items-center gap-2 rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/5 via-background to-primary/5 p-2 shadow-sm transition-all duration-300 focus-within:border-primary/50 focus-within:shadow-lg focus-within:shadow-primary/20">
+                {attachedFiles.length > 0 && (
+                  <div className="mr-2 flex flex-wrap gap-2 border-r border-border/50 pr-2">
+                    {attachedFiles.map((file) => (
+                      <Badge
+                        key={file.id}
+                        variant="secondary"
+                        className="group flex items-center gap-2 px-2 py-1 text-xs"
+                      >
+                        <span className="text-base">
+                          {file.mimeType.startsWith("image/") ? "🖼️" :
+                           file.mimeType === "application/pdf" ? "📄" :
+                           file.mimeType.includes("word") || file.mimeType.includes("document") ? "📝" : "📎"}
+                        </span>
+                        <span className="max-w-[100px] truncate font-medium">{file.originalName}</span>
+                        <button
+                          type="button"
+                          onClick={() => setAttachedFiles(prev => prev.filter(f => f.id !== file.id))}
+                          className="p-0.5 rounded hover:bg-destructive/20 hover:text-destructive opacity-0 group-hover:opacity-100"
+                          disabled={isLoading}
+                        >
+                          <X className="h-3 w-3" />
+                        </button>
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary" title={isLoading ? "Thinking" : "Ready"}>
+                  <Orb state={isLoading ? "reasoning" : "base"} size={20} label={isLoading ? "Thinking" : "Ready"} />
+                </span>
+                <Input
+                  ref={inputRef}
+                  type="text"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  onKeyDown={handleKeyDownWrapper}
+                  placeholder="Ask about any public service..."
+                  className="h-10 flex-1 border-0 bg-transparent px-2 text-sm shadow-none transition-all focus-visible:ring-0 placeholder:text-muted-foreground"
+                  disabled={isLoading}
+                />
+                <FileUpload
+                  onFilesChange={(newFiles) => {
+                    setAttachedFiles(prev => [...prev, ...newFiles]);
+                  }}
+                  disabled={isLoading}
+                />
+                <Button
+                  onClick={handleSend}
+                  size="icon"
+                  disabled={isLoading || (!message.trim() && attachedFiles.length === 0)}
+                  aria-label="Send message"
+                  className="h-10 w-10 rounded-lg shadow-sm hover:shadow-md"
                 >
-                  <span className="text-base">
-                    {file.mimeType.startsWith("image/") ? "🖼️" : 
-                     file.mimeType === "application/pdf" ? "📄" : 
-                     file.mimeType.includes("word") || file.mimeType.includes("document") ? "📝" : "📎"}
-                  </span>
-                  <span className="font-medium truncate max-w-[100px]">{file.originalName}</span>
-                  <button
-                    type="button"
-                    onClick={() => setAttachedFiles(prev => prev.filter(f => f.id !== file.id))}
-                    className="p-0.5 hover:bg-destructive/20 hover:text-destructive rounded opacity-0 group-hover:opacity-100"
-                    disabled={isLoading}
-                  >
-                    <X className="h-3 w-3" />
-                  </button>
-                </Badge>
-              ))}
+                  <Send className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
           )}
-          <Input
-            ref={inputRef}
-            type="text"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            onKeyDown={handleKeyDownWrapper}
-            placeholder="Ask about any public service..."
-            className="flex-1 h-10 pl-3 pr-3 rounded-lg border border-border bg-background shadow-sm focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:border-primary transition-all text-sm placeholder:text-muted-foreground"
-            disabled={isLoading}
-          />
-          <FileUpload
-            onFilesChange={(newFiles) => {
-              setAttachedFiles(prev => [...prev, ...newFiles]);
-            }}
-            disabled={isLoading}
-          />
-          <Button 
-            onClick={handleSend} 
-            size="icon"
-            disabled={isLoading || (!message.trim() && attachedFiles.length === 0)}
-            aria-label="Send message"
-            className="h-10 w-10 rounded-lg shadow-sm hover:shadow-md"
-          >
-            <Send className="h-4 w-4" />
-          </Button>
-            </div>
-          </div>}
         </div>
         {activeWorkflow && workflowMessage && (
           <aside className="h-[36%] min-h-40 w-full shrink-0 overflow-hidden border-t border-border bg-background p-4 lg:h-full lg:min-h-0 lg:w-[min(22rem,32vw)] lg:border-l lg:border-t-0">
