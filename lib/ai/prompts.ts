@@ -123,10 +123,10 @@ Query: "{query}"
 Respond with ONLY the category name, nothing else.`;
 
 export const EXTRACTION_PROMPT = `Extract structured information from this civic query. Return a JSON object with:
-- entities: Array of mentioned entities (schemes, offices, documents, locations)
-- intent: The main intent (scheme_inquiry, eligibility_check, document_guidance, etc.)
-- key_points: Array of key points or requirements mentioned
-- suggested_actions: Array of suggested next actions
+- entities: Array of mentioned entity names as strings (schemes, offices, documents, locations)
+- intent: The main intent string (e.g. scheme_inquiry, eligibility_check, document_guidance)
+- key_points: Array of key points or requirements mentioned as strings
+- suggested_actions: Array of suggested next actions as strings
 
 Query: "{query}"
 
