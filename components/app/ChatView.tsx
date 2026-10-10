@@ -44,20 +44,19 @@ function WorkflowChecklist({
   chatId,
   messageId,
   workflow,
+  onWorkflowChange,
   onContinue,
 }: {
   chatId: string;
   messageId: string;
   workflow: CivicWorkflow;
+  onWorkflowChange: (workflow: CivicWorkflow) => void;
   onContinue: (prompt: string) => void;
 }) {
-  const [currentWorkflow, setCurrentWorkflow] = useState(workflow);
   const [updatingStep, setUpdatingStep] = useState<string | null>(null);
   const [error, setError] = useState("");
-  const completedCount = currentWorkflow.steps.filter((step) => step.completed).length;
-  const activeStepIndex = currentWorkflow.steps.findIndex((step) => !step.completed);
-
-  useEffect(() => setCurrentWorkflow(workflow), [workflow]);
+  const completedCount = workflow.steps.filter((step) => step.completed).length;
+  const activeStepIndex = workflow.steps.findIndex((step) => !step.completed);
 
   const updateStep = async (stepId: string, completed: boolean) => {
     setUpdatingStep(stepId);
@@ -72,7 +71,7 @@ function WorkflowChecklist({
       if (!response.ok) {
         throw new Error(result.error || "Could not save workflow progress.");
       }
-      setCurrentWorkflow(result.workflow);
+      onWorkflowChange(result.workflow);
     } catch (updateError) {
       setError(updateError instanceof Error ? updateError.message : "Could not save workflow progress.");
     } finally {
@@ -81,39 +80,39 @@ function WorkflowChecklist({
   };
 
   return (
-    <section className="mt-4 rounded-xl border border-primary/20 bg-background/70 p-4" aria-label="Civic action workflow">
+    <section className="flex h-full min-h-0 flex-col" aria-label="Civic action workflow">
       <div className="flex items-start gap-3">
         <div className="rounded-lg bg-primary/10 p-2 text-primary">
           <ListChecks className="h-5 w-5" />
         </div>
         <div className="min-w-0 flex-1">
-          <h3 className="font-semibold">{currentWorkflow.title}</h3>
-          <p className="mt-1 text-sm text-muted-foreground">{currentWorkflow.summary}</p>
+          <h3 className="font-semibold">{workflow.title}</h3>
+          <p className="mt-1 text-sm text-muted-foreground">{workflow.summary}</p>
         </div>
       </div>
 
       <div className="mt-4">
         <div className="mb-2 flex items-center justify-between text-xs text-muted-foreground">
           <span>Progress</span>
-          <span>{completedCount} of {currentWorkflow.steps.length} steps complete</span>
+          <span>{completedCount} of {workflow.steps.length} steps complete</span>
         </div>
         <div
           className="h-2 overflow-hidden rounded-full bg-muted"
           role="progressbar"
           aria-label="Workflow progress"
           aria-valuemin={0}
-          aria-valuemax={currentWorkflow.steps.length}
+          aria-valuemax={workflow.steps.length}
           aria-valuenow={completedCount}
         >
           <div
             className="h-full rounded-full bg-primary transition-all"
-            style={{ width: `${(completedCount / currentWorkflow.steps.length) * 100}%` }}
+            style={{ width: `${(completedCount / workflow.steps.length) * 100}%` }}
           />
         </div>
       </div>
 
-      <ol className="mt-4 space-y-3">
-        {currentWorkflow.steps.map((step, index) => {
+      <ol className="mt-4 min-h-0 flex-1 space-y-3 overflow-y-auto pr-1">
+        {workflow.steps.map((step, index) => {
           const isActive = index === activeStepIndex;
           const isSaving = updatingStep === step.id;
           return (
@@ -137,7 +136,7 @@ function WorkflowChecklist({
                   <p className={`text-sm font-medium ${step.completed ? "text-muted-foreground line-through" : ""}`}>
                     {index + 1}. {step.title}
                   </p>
-                  <p className="mt-1 whitespace-pre-wrap text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-1 min-w-0 break-words text-sm leading-relaxed text-muted-foreground [overflow-wrap:anywhere]">
                     {step.details}
                   </p>
                   {step.sourceUrl && (
@@ -168,7 +167,7 @@ function WorkflowChecklist({
 
       {error && <p role="alert" className="mt-3 text-sm text-destructive">{error}</p>}
       {activeStepIndex === -1 && (
-        <p className="mt-4 rounded-lg bg-primary/10 p-3 text-sm font-medium text-primary">
+        <p className="mt-4 shrink-0 rounded-lg bg-primary/10 p-3 text-sm font-medium text-primary">
           Workflow complete. You can continue chatting if you need help with anything else.
         </p>
       )}
@@ -383,6 +382,15 @@ export function ChatView({ chatId, initialMessages = [], chatTitle, initialQuery
   };
 
   const sampleQueries = CHAT_CONFIG.sampleQueries;
+  const workflowMessage = [...messages].reverse().find((item) => item.workflow);
+  const activeWorkflow = workflowMessage?.workflow;
+  const activeWorkflowStep = activeWorkflow?.steps.find((step) => !step.completed);
+
+  const handleWorkflowChange = (messageId: string, workflow: CivicWorkflow) => {
+    setMessages((currentMessages) =>
+      currentMessages.map((item) => item.id === messageId ? { ...item, workflow } : item)
+    );
+  };
 
   const handleSampleQueryClick = (query: string) => {
     setMessage(query);
@@ -390,7 +398,7 @@ export function ChatView({ chatId, initialMessages = [], chatTitle, initialQuery
   };
 
   const emptyState = (
-    <div className="absolute inset-0 grid min-h-0 grid-rows-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center px-6 text-center">
+    <div className="absolute inset-0 grid min-h-0 grid-cols-1 grid-rows-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center justify-items-center gap-y-2 px-4 py-3 text-center sm:px-6">
       <div className="w-full max-w-3xl self-end space-y-3 pb-3">
         <div className="space-y-2">
           <div className="flex items-center justify-center gap-2">
@@ -451,21 +459,22 @@ export function ChatView({ chatId, initialMessages = [], chatTitle, initialQuery
           </div>
         )}
       </div>
-      <div className="w-full max-w-3xl max-h-full self-start space-y-3 overflow-y-auto pt-4">
+      <div className="h-full min-h-0 w-full max-w-3xl self-start space-y-2 overflow-y-auto overscroll-contain pt-2">
         <p className="text-xs font-medium text-muted-foreground">Try these examples</p>
         <div className="grid grid-cols-1 gap-2 text-left sm:grid-cols-2 lg:grid-cols-3">
           {sampleQueries.map((item, index) => (
             <button
               key={index}
+              title={item.text}
               onClick={() => handleSampleQueryClick(item.text)}
               className={cn(
-                "group flex min-h-10 items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-left transition-all duration-200 hover:border-primary/30 hover:bg-accent hover:shadow-md active:scale-[0.98]"
+                "group flex min-w-0 min-h-10 items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-left transition-all duration-200 hover:border-primary/30 hover:bg-accent hover:shadow-md active:scale-[0.98]"
               )}
             >
               <Badge variant="secondary" className="shrink-0 text-[10px] px-2 py-0.5 font-medium">
                 {item.category}
               </Badge>
-              <p className="line-clamp-2 text-xs font-medium leading-snug text-foreground">{item.text}</p>
+              <p className="min-w-0 flex-1 truncate text-xs font-medium leading-snug text-foreground">{item.text}</p>
             </button>
           ))}
         </div>
@@ -509,17 +518,6 @@ export function ChatView({ chatId, initialMessages = [], chatTitle, initialQuery
               </div>
             )}
             {msg.content && <MessageContent content={msg.content} isUser={msg.role === "user"} />}
-            {msg.workflow && (
-              <WorkflowChecklist
-                chatId={chatId}
-                messageId={msg.id}
-                workflow={msg.workflow}
-                onContinue={(prompt) => {
-                  setMessage(prompt);
-                  inputRef.current?.focus();
-                }}
-              />
-            )}
             {msg.tnInfo && (
               <div className="mt-3 border-t border-border/60 pt-3 text-xs">
                 <p className="font-medium">Source: TN-Info (independent, best-effort data)</p>
@@ -599,6 +597,34 @@ export function ChatView({ chatId, initialMessages = [], chatTitle, initialQuery
           </div>
         </div>
       )}
+      {activeWorkflow && (
+        <section className="mx-auto mt-4 w-full max-w-3xl rounded-xl border border-primary/20 bg-primary/5 p-4" aria-live="polite" aria-label="Next workflow instruction">
+          {activeWorkflowStep ? (
+            <>
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-primary">
+                <ArrowRight className="h-4 w-4" />
+                <span>Next step</span>
+              </div>
+              <h3 className="mt-2 font-semibold">{activeWorkflowStep.title}</h3>
+              <p className="mt-1 whitespace-pre-wrap text-sm leading-relaxed text-foreground/80">
+                {activeWorkflowStep.details}
+              </p>
+              {activeWorkflowStep.sourceUrl && (
+                <a
+                  href={activeWorkflowStep.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-block text-sm text-primary underline underline-offset-2"
+                >
+                  Open official source
+                </a>
+              )}
+            </>
+          ) : (
+            <p className="font-medium text-primary">All workflow actions are complete. You can ask for more help here.</p>
+          )}
+        </section>
+      )}
     </div>
   );
 
@@ -622,9 +648,12 @@ export function ChatView({ chatId, initialMessages = [], chatTitle, initialQuery
   }, [hasInsights, showInsights, messages.length]);
 
   return (
-    <div className="flex h-full flex-col relative">
-      <div className="flex-1 overflow-hidden flex relative">
-        <div className="flex-1 flex flex-col">
+    <div className="relative flex h-full min-h-0 flex-col">
+      <div className={cn(
+        "relative flex min-h-0 flex-1 overflow-hidden",
+        activeWorkflow ? "flex-col lg:flex-row" : "flex-row"
+      )}>
+        <div className="flex min-h-0 min-w-0 flex-1 flex-col">
           <div 
             ref={messagesContainerRef}
             className={cn(
@@ -721,7 +750,21 @@ export function ChatView({ chatId, initialMessages = [], chatTitle, initialQuery
             </div>
           </div>}
         </div>
-        {showInsights && hasInsights && (
+        {activeWorkflow && workflowMessage && (
+          <aside className="h-[36%] min-h-40 w-full shrink-0 overflow-hidden border-t border-border bg-background p-4 lg:h-full lg:min-h-0 lg:w-[min(22rem,32vw)] lg:border-l lg:border-t-0">
+            <WorkflowChecklist
+              chatId={chatId}
+              messageId={workflowMessage.id}
+              workflow={activeWorkflow}
+              onWorkflowChange={(workflow) => handleWorkflowChange(workflowMessage.id, workflow)}
+              onContinue={(prompt) => {
+                setMessage(prompt);
+                inputRef.current?.focus();
+              }}
+            />
+          </aside>
+        )}
+        {showInsights && hasInsights && !activeWorkflow && (
           <InsightsSidebar 
             query={currentQuery} 
             className="w-80 hidden lg:flex"
