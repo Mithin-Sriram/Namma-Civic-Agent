@@ -1,0 +1,2032 @@
+{
+  "title": "Tamil Nadu Citizen Government Links for Namma Civic Agent RAG",
+  "scope": "Tamil Nadu state government, local bodies and district administration only",
+  "generated_on": "2026-10-10",
+  "count": 123,
+  "usage_note": "Research seed list for RAG ingestion, not a guarantee that every URL or individual service is currently available. Revalidate links, official ownership, page content and freshness before indexing or using for advice. Do not infer eligibility or legal procedures from URL titles alone.",
+  "discovery_sources": [
+    {
+      "name": "NIC Tamil Nadu government website directory",
+      "url": "https://tn.nic.in/publication/list-of-websites/"
+    },
+    {
+      "name": "Tamil Nadu official district websites list",
+      "url": "https://lokbhavan.tn.gov.in/districts-of-tamil-nadu/"
+    },
+    {
+      "name": "Tamil Nadu e-Sevai service list",
+      "url": "https://tnesevai.tn.gov.in/Citizen/Pages/ServiceList.aspx"
+    },
+    {
+      "name": "Tamil Nadu Directorate of e-Governance services",
+      "url": "https://deg.tn.gov.in/services.html"
+    },
+    {
+      "name": "Tamil Nadu Urban Local Body Locator",
+      "url": "https://www.tnurbantree.tn.gov.in/list-of-municipality-websites-ulb-locator/"
+    }
+  ],
+  "links": [
+    {
+      "id": "TN001",
+      "name": "Tamil Nadu State Portal",
+      "url": "https://www.tn.gov.in/",
+      "category": "Government information",
+      "description": "Official state portal and starting point for department information, policies, announcements and citizen services.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN002",
+      "name": "NIC Tamil Nadu Government Website Directory",
+      "url": "https://tn.nic.in/publication/list-of-websites/",
+      "category": "Official directory",
+      "description": "NIC-maintained directory of Tamil Nadu government websites and service portals.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN003",
+      "name": "Tamil Nadu districts official list",
+      "url": "https://lokbhavan.tn.gov.in/districts-of-tamil-nadu/",
+      "category": "District administration",
+      "description": "Government-published district list with links to district administration websites.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN004",
+      "name": "TNeGA e-Sevai Citizen Portal",
+      "url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "category": "Citizen services",
+      "description": "Citizen entry point for Tamil Nadu e-Sevai online services.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN005",
+      "name": "TNeGA e-Sevai Service List",
+      "url": "https://tnesevai.tn.gov.in/Citizen/Pages/ServiceList.aspx",
+      "category": "Citizen services",
+      "description": "Service catalogue listing e-Sevai services and related requirements.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN006",
+      "name": "TNeGA e-Sevai Centre Service List",
+      "url": "https://www.tnesevai.tn.gov.in/Pages/EsevaiServiceList.aspx",
+      "category": "Citizen services",
+      "description": "List of services offered through e-Sevai centres.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN007",
+      "name": "TNeGA Citizen Registration",
+      "url": "https://www.tnesevai.tn.gov.in/Citizen/Registration.aspx",
+      "category": "Citizen services",
+      "description": "Registration route linked by the e-Sevai citizen portal.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN008",
+      "name": "Directorate of e-Governance",
+      "url": "https://deg.tn.gov.in/",
+      "category": "Digital government",
+      "description": "Tamil Nadu digital governance, e-Office and government digital infrastructure information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN009",
+      "name": "Directorate of e-Governance Services",
+      "url": "https://deg.tn.gov.in/services.html",
+      "category": "Citizen services",
+      "description": "Overview of revenue, welfare, business, vital records, utility and education service categories.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN010",
+      "name": "IT and Digital Services Department",
+      "url": "https://www.it.tn.gov.in/",
+      "category": "Digital government",
+      "description": "Department information about Tamil Nadu IT and e-governance initiatives.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN011",
+      "name": "Tamil Nadu CM Special Cell",
+      "url": "https://cmcell.tn.gov.in/",
+      "category": "Grievances",
+      "description": "Portal associated with submitting public petitions and grievances; verify current availability.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN012",
+      "name": "Tamil Nadu grievance redressal",
+      "url": "https://gdp.tn.gov.in/",
+      "category": "Grievances",
+      "description": "Government grievance redressal entry point; confirm current workflow before use.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN013",
+      "name": "Tamil Nadu RTI",
+      "url": "https://rti.tn.gov.in/",
+      "category": "Transparency",
+      "description": "State RTI information and related public resources; verify application route.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN014",
+      "name": "Tamil Nadu Public Service Commission",
+      "url": "https://www.tnpsc.gov.in/",
+      "category": "Jobs and recruitment",
+      "description": "Recruitment notifications, exam schedules, results and candidate services.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN015",
+      "name": "Teachers Recruitment Board",
+      "url": "https://www.trb.tn.gov.in/",
+      "category": "Jobs and recruitment",
+      "description": "Teacher recruitment notifications, exams and results.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN016",
+      "name": "Uniformed Services Recruitment Board",
+      "url": "https://www.tnusrb.tn.gov.in/",
+      "category": "Jobs and recruitment",
+      "description": "Recruitment information and candidate updates for uniformed services.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN017",
+      "name": "Directorate of Government Examinations",
+      "url": "https://www.dge.tn.gov.in/",
+      "category": "Education",
+      "description": "Public exam notifications, timetables, results and certificate information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN018",
+      "name": "School Education Department",
+      "url": "https://www.tnschools.gov.in/",
+      "category": "Education",
+      "description": "School education information and department notices; verify service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN019",
+      "name": "Directorate of Technical Education",
+      "url": "https://www.tndte.gov.in/",
+      "category": "Education",
+      "description": "Technical education and polytechnic-related information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN020",
+      "name": "Tamil Nadu Engineering Admissions",
+      "url": "https://www.tneaonline.org/",
+      "category": "Education admissions",
+      "description": "Engineering admission and counselling information for applicants.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN021",
+      "name": "Tamil Nadu Agricultural University",
+      "url": "https://tnau.ac.in/",
+      "category": "Agriculture",
+      "description": "Agricultural education, research and extension information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN022",
+      "name": "TNAU Agritech Portal",
+      "url": "https://agritech.tnau.ac.in/",
+      "category": "Agriculture",
+      "description": "Crop, soil, horticulture, livestock and farmer advisory resources.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN023",
+      "name": "Rural Development and Panchayat Raj",
+      "url": "https://www.tnrd.tn.gov.in/",
+      "category": "Rural local government",
+      "description": "Panchayat administration, rural development schemes, reports and grievance information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN024",
+      "name": "Municipal Administration / TN Urban Tree",
+      "url": "https://www.tnurbantree.tn.gov.in/",
+      "category": "Urban local government",
+      "description": "Municipal administration, local body information and civic service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN025",
+      "name": "TN Urban Local Body Locator",
+      "url": "https://www.tnurbantree.tn.gov.in/list-of-municipality-websites-ulb-locator/",
+      "category": "Urban local government",
+      "description": "Directory of municipality and corporation websites across Tamil Nadu.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN026",
+      "name": "TN Urban ePay",
+      "url": "https://tnurbanepay.tn.gov.in/",
+      "category": "Payments and local taxes",
+      "description": "Online local body payments including property tax, water charges and other listed dues.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN027",
+      "name": "Greater Chennai Corporation",
+      "url": "https://chennaicorporation.gov.in/",
+      "category": "Chennai civic services",
+      "description": "Chennai civic services, local administration, public notices and online service navigation.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN028",
+      "name": "Chennai Metro Water",
+      "url": "https://chennaimetrowater.tn.gov.in/",
+      "category": "Water and sanitation",
+      "description": "Chennai water supply and sewerage consumer information and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN029",
+      "name": "TWAD Board",
+      "url": "https://www.twadboard.tn.gov.in/",
+      "category": "Water and sanitation",
+      "description": "Tamil Nadu Water Supply and Drainage Board project and public service information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN030",
+      "name": "TANGEDCO",
+      "url": "https://www.tangedco.gov.in/",
+      "category": "Electricity",
+      "description": "Electricity utility information, consumer links, bills and service notices.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN031",
+      "name": "Tamil Nadu Registration Department",
+      "url": "https://tnreginet.gov.in/",
+      "category": "Property and registration",
+      "description": "Document registration, encumbrance and guideline value service entry point.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN032",
+      "name": "Tamil Nilam Citizen Portal",
+      "url": "https://tamilnilam.tn.gov.in/citizen",
+      "category": "Land and revenue",
+      "description": "Citizen land-record portal including patta-transfer history information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN033",
+      "name": "Tamil Nadu Land Records e-Services",
+      "url": "https://eservices.tn.gov.in/eservicesnew/",
+      "category": "Land and revenue",
+      "description": "View and verify patta, chitta, FMB/TSLR and A-register records.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN034",
+      "name": "Tamil Nadu Civil Supplies Department",
+      "url": "https://www.consumer.tn.gov.in/",
+      "category": "Ration and consumer protection",
+      "description": "Civil supplies, public distribution and consumer protection information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN035",
+      "name": "Tamil Nadu Public Distribution System",
+      "url": "https://www.tnpds.gov.in/",
+      "category": "Ration and food supplies",
+      "description": "Smart ration card and public distribution system services.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN036",
+      "name": "Tamil Nadu Civil Supplies Corporation",
+      "url": "https://www.tncsc.tn.gov.in/",
+      "category": "Food supplies",
+      "description": "Civil supplies corporation information and related notices.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN037",
+      "name": "Tamil Nadu Transport Department",
+      "url": "https://www.tn.gov.in/department/29",
+      "category": "Transport",
+      "description": "State portal department information for transport.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN038",
+      "name": "Tamil Nadu Transport portal",
+      "url": "https://transport.tn.gov.in/",
+      "category": "Transport",
+      "description": "Transport department information and links to vehicle and licence services; verify live routes.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN039",
+      "name": "Tamil Nadu State Transport Corporation",
+      "url": "https://www.tnstc.in/",
+      "category": "Public transport",
+      "description": "State transport information and bus booking where available.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN040",
+      "name": "Tamil Nadu Police e-Services",
+      "url": "https://eservices.tnpolice.gov.in/",
+      "category": "Police and safety",
+      "description": "Police citizen-service entry point; verify current available services.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN041",
+      "name": "Tamil Nadu Police",
+      "url": "https://www.tnpolice.gov.in/",
+      "category": "Police and safety",
+      "description": "Police department information, contacts and public notices.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN042",
+      "name": "Tamil Nadu Fire and Rescue Services",
+      "url": "https://www.tnfrs.tn.nic.in/",
+      "category": "Emergency and safety",
+      "description": "Fire and rescue service information and public safety contacts.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN043",
+      "name": "Health and Family Welfare Department",
+      "url": "https://www.tnhealth.tn.gov.in/",
+      "category": "Health",
+      "description": "Health department programmes, notices and service information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN044",
+      "name": "PICME",
+      "url": "https://picme.tn.gov.in/",
+      "category": "Health and family welfare",
+      "description": "Pregnancy registration and maternal/child health tracking information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN045",
+      "name": "Medical Services Recruitment Board",
+      "url": "https://www.mrb.tn.gov.in/",
+      "category": "Health jobs",
+      "description": "Recruitment notifications and applications for medical and health posts.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN046",
+      "name": "Social Welfare and Women Empowerment",
+      "url": "https://www.tnsocialwelfare.tn.gov.in/",
+      "category": "Welfare",
+      "description": "Social welfare schemes and support information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN047",
+      "name": "Differently Abled Welfare",
+      "url": "https://www.scd.tn.gov.in/",
+      "category": "Disability support",
+      "description": "Information and services for eligible persons with disabilities.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN048",
+      "name": "Tamil Nadu Corporation for Development of Women",
+      "url": "https://www.tamilnadumahalir.org/",
+      "category": "Women and livelihoods",
+      "description": "Women’s development, self-help groups and livelihood programmes.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN049",
+      "name": "Labour Department",
+      "url": "https://labour.tn.gov.in/",
+      "category": "Labour and worker welfare",
+      "description": "Labour laws, worker services, registrations and welfare information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN050",
+      "name": "Employment Exchange",
+      "url": "https://employmentexchange.tn.gov.in/",
+      "category": "Employment",
+      "description": "Employment registration and department information; verify current portal operation.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN051",
+      "name": "Naan Mudhalvan",
+      "url": "https://www.naanmudhalvan.tn.gov.in/",
+      "category": "Skills and employment",
+      "description": "Skill development, training and career resources for learners.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN052",
+      "name": "MSME Online",
+      "url": "https://www.msmeonline.tn.gov.in/",
+      "category": "Business and MSME",
+      "description": "MSME services, schemes and business support information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN053",
+      "name": "Tamil Nadu SIDCO",
+      "url": "https://www.sidco.tn.gov.in/",
+      "category": "Business and industry",
+      "description": "Industrial estate and small-industry infrastructure information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN054",
+      "name": "Tamil Nadu Pollution Control Board",
+      "url": "https://tnpcb.gov.in/",
+      "category": "Environment",
+      "description": "Environmental notices, pollution control information and listed services.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN055",
+      "name": "TNPCB Online Consent Management",
+      "url": "https://ocmms.tn.gov.in/OCMMS/",
+      "category": "Environment and compliance",
+      "description": "Online consent management for eligible industries and regulated establishments.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN056",
+      "name": "Tamil Nadu Forest Department",
+      "url": "https://www.forests.tn.gov.in/",
+      "category": "Environment",
+      "description": "Forest, conservation, wildlife and department information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN057",
+      "name": "Tamil Nadu Tourism",
+      "url": "https://www.tamilnadutourism.tn.gov.in/",
+      "category": "Tourism",
+      "description": "Official tourism destinations and visitor information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN058",
+      "name": "Public Works Department",
+      "url": "https://www.tnpwd.com/",
+      "category": "Public infrastructure",
+      "description": "Public works, infrastructure and department information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN059",
+      "name": "Tamil Nadu State Planning Commission",
+      "url": "https://spc.tn.gov.in/",
+      "category": "Planning and policy",
+      "description": "State development planning, reports and policy research.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN060",
+      "name": "Tamil Nadu Government Orders",
+      "url": "https://www.tn.gov.in/go_view/",
+      "category": "Government orders",
+      "description": "Published government orders where available; verify department and date.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN061",
+      "name": "Stationery and Printing Department",
+      "url": "https://www.stationeryprinting.tn.gov.in/",
+      "category": "Gazette and publications",
+      "description": "Government publications and printing department information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN062",
+      "name": "Tamil Nadu Geographical Information System",
+      "url": "https://tngis.tn.gov.in/",
+      "category": "Maps and geographic data",
+      "description": "State geospatial data and map layers; verify dataset dates and terms.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN063",
+      "name": "Tamil Nadu State Election Commission",
+      "url": "https://tnsec.tn.gov.in/",
+      "category": "Local elections",
+      "description": "Local body election information, notices and public resources.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN064",
+      "name": "Chief Minister's Public Relief Fund",
+      "url": "https://cmprf.tn.gov.in/",
+      "category": "Public assistance",
+      "description": "Information and processes related to the state public relief fund.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN065",
+      "name": "HR&CE Department",
+      "url": "https://hrce.tn.gov.in/",
+      "category": "Temple administration",
+      "description": "Temple administration, department information and listed online services.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN066",
+      "name": "Tamil Nadu State Information Commission",
+      "url": "https://www.tnsic.gov.in/",
+      "category": "Transparency",
+      "description": "RTI appeal and commission information; confirm current filing guidance.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN067",
+      "name": "Tamil Nadu State Human Rights Commission",
+      "url": "https://www.shrc.tn.gov.in/",
+      "category": "Rights and complaints",
+      "description": "Commission information and complaint procedure resources.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN068",
+      "name": "Tamil Nadu State Legal Services Authority",
+      "url": "https://www.tnlegalservices.tn.gov.in/",
+      "category": "Legal aid",
+      "description": "Legal aid, Lok Adalat and legal services information; not a substitute for legal advice.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN069",
+      "name": "Tamil Nadu Infrastructure Development Board",
+      "url": "https://tnidb.tn.gov.in/",
+      "category": "Infrastructure",
+      "description": "Infrastructure development projects and related information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN070",
+      "name": "Tamil Nadu Institute of Urban Studies",
+      "url": "https://www.tnius.org/",
+      "category": "Urban local government",
+      "description": "Urban governance research and training resources.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN071",
+      "name": "Town Panchayat portal",
+      "url": "https://www.townpanchayat.in/",
+      "category": "Local government",
+      "description": "Town panchayat information and local administration links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN072",
+      "name": "Ex-Servicemen Welfare",
+      "url": "https://www.exwel.tn.gov.in/",
+      "category": "Veterans and welfare",
+      "description": "Welfare information for eligible ex-servicemen and dependants.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN073",
+      "name": "Tamil Nadu Fisheries Department",
+      "url": "https://www.fisheries.tn.gov.in/",
+      "category": "Fisheries and coastal livelihoods",
+      "description": "Fisheries programmes and coastal livelihood information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN074",
+      "name": "Animal Husbandry Department",
+      "url": "https://ahd.tn.gov.in/",
+      "category": "Animal husbandry",
+      "description": "Livestock and veterinary department information; verify current citizen-service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN075",
+      "name": "Aavin",
+      "url": "https://aavin.tn.gov.in/",
+      "category": "Dairy and consumers",
+      "description": "Dairy product, outlet and consumer information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN076",
+      "name": "Tamil Nadu Energy Development Agency",
+      "url": "https://teda.in/",
+      "category": "Energy",
+      "description": "Renewable energy programme and energy-development information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN078",
+      "name": "TN NIC State Centre",
+      "url": "https://tn.nic.in/",
+      "category": "Government directory",
+      "description": "NIC Tamil Nadu state centre and government portal information.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN080",
+      "name": "Ariyalur District Administration",
+      "url": "https://ariyalur.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Ariyalur. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN081",
+      "name": "Chengalpattu District Administration",
+      "url": "https://chengalpattu.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Chengalpattu. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN082",
+      "name": "Chennai District Administration",
+      "url": "https://chennai.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Chennai. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN083",
+      "name": "Coimbatore District Administration",
+      "url": "https://coimbatore.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Coimbatore. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN084",
+      "name": "Cuddalore District Administration",
+      "url": "https://cuddalore.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Cuddalore. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN085",
+      "name": "Dharmapuri District Administration",
+      "url": "https://dharmapuri.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Dharmapuri. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN086",
+      "name": "Dindigul District Administration",
+      "url": "https://dindigul.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Dindigul. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN087",
+      "name": "Erode District Administration",
+      "url": "https://erode.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Erode. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN088",
+      "name": "Kallakurichi District Administration",
+      "url": "https://kallakurichi.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Kallakurichi. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN089",
+      "name": "Kancheepuram District Administration",
+      "url": "https://kancheepuram.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Kancheepuram. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN090",
+      "name": "Karur District Administration",
+      "url": "https://karur.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Karur. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN091",
+      "name": "Krishnagiri District Administration",
+      "url": "https://krishnagiri.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Krishnagiri. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN092",
+      "name": "Madurai District Administration",
+      "url": "https://madurai.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Madurai. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN093",
+      "name": "Mayiladuthurai District Administration",
+      "url": "https://mayiladuthurai.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Mayiladuthurai. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN094",
+      "name": "Nagapattinam District Administration",
+      "url": "https://nagapattinam.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Nagapattinam. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN095",
+      "name": "Kanniyakumari District Administration",
+      "url": "https://kanniyakumari.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Kanniyakumari. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN096",
+      "name": "Namakkal District Administration",
+      "url": "https://namakkal.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Namakkal. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN097",
+      "name": "Perambalur District Administration",
+      "url": "https://perambalur.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Perambalur. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN098",
+      "name": "Pudukkottai District Administration",
+      "url": "https://pudukkottai.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Pudukkottai. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN099",
+      "name": "Ramanathapuram District Administration",
+      "url": "https://ramanathapuram.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Ramanathapuram. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN100",
+      "name": "Ranipet District Administration",
+      "url": "https://ranipet.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Ranipet. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN101",
+      "name": "Salem District Administration",
+      "url": "https://salem.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Salem. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN102",
+      "name": "Sivaganga District Administration",
+      "url": "https://sivaganga.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Sivaganga. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN103",
+      "name": "Tenkasi District Administration",
+      "url": "https://tenkasi.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Tenkasi. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN104",
+      "name": "Thanjavur District Administration",
+      "url": "https://thanjavur.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Thanjavur. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN105",
+      "name": "Theni District Administration",
+      "url": "https://theni.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Theni. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN106",
+      "name": "Thoothukudi District Administration",
+      "url": "https://thoothukudi.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Thoothukudi. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN107",
+      "name": "Tiruchirappalli District Administration",
+      "url": "https://tiruchirappalli.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Tiruchirappalli. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN108",
+      "name": "Tirunelveli District Administration",
+      "url": "https://tirunelveli.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Tirunelveli. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN109",
+      "name": "Tirupathur District Administration",
+      "url": "https://tirupathur.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Tirupathur. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN110",
+      "name": "Tiruppur District Administration",
+      "url": "https://tiruppur.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Tiruppur. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN111",
+      "name": "Tiruvallur District Administration",
+      "url": "https://tiruvallur.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Tiruvallur. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN112",
+      "name": "Tiruvannamalai District Administration",
+      "url": "https://tiruvannamalai.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Tiruvannamalai. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN113",
+      "name": "Tiruvarur District Administration",
+      "url": "https://tiruvarur.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Tiruvarur. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN114",
+      "name": "Vellore District Administration",
+      "url": "https://vellore.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Vellore. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN115",
+      "name": "Viluppuram District Administration",
+      "url": "https://viluppuram.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Viluppuram. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN116",
+      "name": "Virudhunagar District Administration",
+      "url": "https://virudhunagar.nic.in/",
+      "category": "District administration",
+      "description": "Official district administration site for Virudhunagar. Intended for collectorate contacts, district notices, local department information, schemes and service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Listed in Tamil Nadu government district directory",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN117",
+      "name": "Tamil Nadu e-Sevai default page",
+      "url": "https://www.tnesevai.tn.gov.in/Default.aspx",
+      "category": "Citizen services",
+      "description": "e-Sevai information and route to services available through Common Service Centres.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN118",
+      "name": "Tamil Nadu e-Sevai citizen default",
+      "url": "https://www.tnesevai.tn.gov.in/citizen/Default.aspx",
+      "category": "Citizen services",
+      "description": "Citizen portal landing page for e-Sevai access.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN119",
+      "name": "TN government services overview on NIC",
+      "url": "https://services.india.gov.in/service/detail/avail-various-online-services-of-tamil-nadu-government-1",
+      "category": "Service directory",
+      "description": "Government Services Portal page summarizing selected Tamil Nadu online services; use it to discover state service links.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN120",
+      "name": "Tamil Nadu land records service description",
+      "url": "https://services.india.gov.in/service/detail/e-services-of-land-records-tamil-nadu",
+      "category": "Land and revenue",
+      "description": "Government services directory description of Tamil Nadu land-record e-services.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN121",
+      "name": "Tamil Nadu rural Patta/Chitta/FMB service description",
+      "url": "https://services.india.gov.in/service/detail/view-land-records-of-patta--chitta--fmb-rural-tamil-nadu",
+      "category": "Land and revenue",
+      "description": "Service description for viewing rural Patta, Chitta and FMB records.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN122",
+      "name": "Chennai district land e-services information",
+      "url": "https://chennai.nic.in/service/eservices-anytime-anywhere-land/",
+      "category": "Land and revenue",
+      "description": "District information page explaining land e-services and linking to the land records portal.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN123",
+      "name": "Tamil Nadu Common Service Centres",
+      "url": "https://www.it.tn.gov.in/en/TNEGA/common_service_centres",
+      "category": "Citizen services",
+      "description": "Information about services delivered through common service centres.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN125",
+      "name": "TN urban municipality quick links",
+      "url": "https://www.tnurbantree.tn.gov.in/quick-links-2/",
+      "category": "Urban local government",
+      "description": "Department quick-links page for state government and civic service websites.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    },
+    {
+      "id": "TN129",
+      "name": "TN Registration portal entry",
+      "url": "https://tnreginet.gov.in/portal/",
+      "category": "Property and registration",
+      "description": "Registration department entry point; use current menus for document registration and encumbrance services.",
+      "jurisdiction": "Tamil Nadu",
+      "source_status": "Official portal; revalidate before production indexing",
+      "last_checked": "2026-10-10",
+      "rag_notes": "Re-fetch the page and verify content freshness before indexing; treat page text as untrusted source data."
+    }
+  ],
+  "schemes_and_services": [
+    {
+      "id": "TNS001",
+      "name": "Pudhumai Penn Scheme",
+      "category": "Education / women students",
+      "benefit": "₹1,000 per month as direct benefit transfer, as described by the cited institutional scheme page.",
+      "eligibility": "Girl students who studied Classes 6–12 continuously in Government schools or Government-aided Tamil-medium schools, according to the cited page. Confirm current Government Order and any later amendments before eligibility decisions.",
+      "application_process": "The cited page says applications are made through UMIS; the institution may verify and forward applications.",
+      "documents_reported_by_source": [
+        "School study certificate",
+        "Community certificate",
+        "Income certificate",
+        "Bank passbook",
+        "Aadhaar card",
+        "Admission proof"
+      ],
+      "official_application_url": "https://umis.tn.gov.in/",
+      "source_urls": [
+        "https://tils.tn.gov.in/schemes"
+      ],
+      "source_status": "Official institutional page found; revalidate current rules and application portal",
+      "freshness_note": "Eligibility, payment and portal details may change; confirm with current official notices.",
+      "confidence": "source-reported; verify before personalized advice"
+    },
+    {
+      "id": "TNS002",
+      "name": "Tamil Pudhalvan Scheme",
+      "category": "Education / men students",
+      "benefit": "₹1,000 per month as direct benefit transfer, as described by the cited institutional scheme page.",
+      "eligibility": "Boy students who studied Classes 6–12 continuously in Government schools or Government-aided Tamil-medium schools, according to the cited page. Confirm current Government Order and amendments.",
+      "application_process": "The cited page says applications are made through UMIS; the institution may verify and forward applications.",
+      "documents_reported_by_source": [
+        "School study certificate",
+        "Community certificate",
+        "Income certificate",
+        "Bank passbook",
+        "Aadhaar card",
+        "Admission proof"
+      ],
+      "official_application_url": "https://umis.tn.gov.in/",
+      "source_urls": [
+        "https://tils.tn.gov.in/schemes"
+      ],
+      "source_status": "Official institutional page found; revalidate current rules and application portal",
+      "freshness_note": "Confirm current official eligibility and benefit before advising a citizen.",
+      "confidence": "source-reported; verify before personalized advice"
+    },
+    {
+      "id": "TNS003",
+      "name": "Social Security Pension Schemes – Old Age Pension",
+      "category": "Social welfare / pension",
+      "benefit": "Monthly pension; amount depends on the applicable scheme and current rules.",
+      "eligibility": "Official CRA pages describe support for eligible destitute older persons. Scheme-specific age, income, asset and other conditions must be checked for the relevant pension category.",
+      "application_process": "Use the official Revenue Administration / e-Sevai channels and confirm the current application process with the responsible department.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.cra.tn.gov.in/about_schemes.php",
+        "https://www.cra.tn.gov.in/eleg_schemes.php",
+        "https://oap.tn.gov.in/"
+      ],
+      "source_status": "Official department sources found; scheme-specific criteria and amounts must be revalidated",
+      "freshness_note": "Older pages may show historical benefit amounts; do not treat displayed historical amounts as current without confirmation.",
+      "confidence": "official source; current amount needs verification"
+    },
+    {
+      "id": "TNS004",
+      "name": "Indira Gandhi National Old Age Pension Scheme (Tamil Nadu implementation)",
+      "category": "Social welfare / pension",
+      "benefit": "Monthly pension under the applicable rules; current amount should be verified from latest official order.",
+      "eligibility": "CRA page lists destitute applicants aged 60 and above for this scheme; source also references BPL-related criteria. Verify current detailed rules before determining eligibility.",
+      "application_process": "Check the official e-Sevai / Revenue Administration channel.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.cra.tn.gov.in/eleg_schemes.php",
+        "https://www.cra.tn.gov.in/about_schemes.php"
+      ],
+      "source_status": "Official CRA page; verify latest guidelines",
+      "freshness_note": "Do not infer eligibility solely from age.",
+      "confidence": "official source; additional criteria require verification"
+    },
+    {
+      "id": "TNS005",
+      "name": "Indira Gandhi National Widow Pension Scheme (Tamil Nadu implementation)",
+      "category": "Social welfare / pension",
+      "benefit": "Monthly pension under applicable current rules.",
+      "eligibility": "CRA page describes destitute widows aged 40 and above and references BPL criteria. Confirm latest official eligibility rules.",
+      "application_process": "Check e-Sevai and the Revenue Administration department for current process.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.cra.tn.gov.in/eleg_schemes.php",
+        "https://www.cra.tn.gov.in/about_schemes.php"
+      ],
+      "source_status": "Official CRA page; verify latest guidelines",
+      "freshness_note": "Current age, income and documentation rules must be checked.",
+      "confidence": "official source; verify before personalized advice"
+    },
+    {
+      "id": "TNS006",
+      "name": "Indira Gandhi National Disability Pension Scheme (Tamil Nadu implementation)",
+      "category": "Disability / pension",
+      "benefit": "Monthly pension under applicable current rules.",
+      "eligibility": "CRA page describes applicants aged 18 and above with disability level of 80% and above and BPL-related criteria. Verify latest rules and accepted disability documentation.",
+      "application_process": "Check e-Sevai and Revenue Administration for the current application route.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.cra.tn.gov.in/eleg_schemes.php",
+        "https://www.cra.tn.gov.in/about_schemes.php"
+      ],
+      "source_status": "Official CRA page; verify latest guidelines",
+      "freshness_note": "Do not apply these criteria to other disability benefits or pensions.",
+      "confidence": "official source; verify before personalized advice"
+    },
+    {
+      "id": "TNS007",
+      "name": "Differently Abled Pension Scheme (DAPS)",
+      "category": "Disability / pension",
+      "benefit": "Monthly pension; amount and rules must be checked against current orders.",
+      "eligibility": "CRA page describes age 18+, unemployment, disability level 40%+ and an annual-income limit for private/self-employed applicants. Verify all current conditions.",
+      "application_process": "Check the official e-Sevai and relevant disability/social welfare department channels.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.cra.tn.gov.in/eleg_schemes.php",
+        "https://www.cra.tn.gov.in/about_schemes.php"
+      ],
+      "source_status": "Official CRA page; verify latest guidelines",
+      "freshness_note": "Income limits and benefit amounts can change.",
+      "confidence": "official source; verify before personalized advice"
+    },
+    {
+      "id": "TNS008",
+      "name": "Destitute Widow Pension Scheme (DWPS)",
+      "category": "Women / social welfare / pension",
+      "benefit": "Monthly pension under current scheme rules.",
+      "eligibility": "For eligible destitute widows; confirm age, income, asset and other criteria from current official rules.",
+      "application_process": "Check e-Sevai and the Revenue Administration department.",
+      "documents_reported_by_source": [
+        "Documents listed in the current e-Sevai service entry must be verified at application time."
+      ],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.cra.tn.gov.in/about_schemes.php",
+        "https://tnesevai.tn.gov.in/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official department/service listings found; verify current conditions",
+      "freshness_note": "Do not reuse outdated amounts or checklist without a fresh source check.",
+      "confidence": "official source; verify before personalized advice"
+    },
+    {
+      "id": "TNS009",
+      "name": "Destitute / Deserted Wives Pension Scheme (DDWPS)",
+      "category": "Women / social welfare / pension",
+      "benefit": "Monthly pension under current scheme rules.",
+      "eligibility": "For eligible destitute/deserted wives; CRA page includes a legal-separation/desertion condition. Confirm the exact current conditions with the department.",
+      "application_process": "Check e-Sevai service listing and Revenue Administration instructions.",
+      "documents_reported_by_source": [
+        "The e-Sevai listing includes identity/address and court-related documentation for this service; confirm the current checklist."
+      ],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.cra.tn.gov.in/eleg_schemes.php",
+        "https://tnesevai.tn.gov.in/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official source found; verify current checklist and eligibility",
+      "freshness_note": "Never assume every applicant needs identical documents; use the current service checklist.",
+      "confidence": "official source; verify before personalized advice"
+    },
+    {
+      "id": "TNS010",
+      "name": "Pension to Poor Unmarried Women (50 years and above)",
+      "category": "Women / social welfare / pension",
+      "benefit": "Monthly pension under current scheme rules.",
+      "eligibility": "CRA page describes destitute unmarried women aged 50 and above; verify asset and other conditions from current rules.",
+      "application_process": "Check e-Sevai and Revenue Administration channels.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.cra.tn.gov.in/eleg_schemes.php",
+        "https://tnesevai.tn.gov.in/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official CRA page; verify latest guidelines",
+      "freshness_note": "Confirm current criteria and payment amount.",
+      "confidence": "official source; verify before personalized advice"
+    },
+    {
+      "id": "TNS011",
+      "name": "Chief Minister's Uzhavar Pathukappu Thittam (CMUPT)",
+      "category": "Farmers / agricultural households / social protection",
+      "benefit": "Benefits vary by component; the CRA source lists a related old-age pension component. Do not assume all CMUPT benefits are pensions.",
+      "eligibility": "Eligibility depends on the specific CMUPT benefit/component and current department rules.",
+      "application_process": "Check the official e-Sevai service listing and responsible department.",
+      "documents_reported_by_source": [
+        "The e-Sevai entry lists a CMUPT card among reported documents for the pension component; verify the current checklist."
+      ],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.cra.tn.gov.in/about_schemes.php",
+        "https://tnesevai.tn.gov.in/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official department/service listing found; component-specific verification required",
+      "freshness_note": "Do not generalize eligibility across CMUPT components.",
+      "confidence": "official source; verify before personalized advice"
+    },
+    {
+      "id": "TNS012",
+      "name": "Community Certificate",
+      "category": "Certificate / revenue service",
+      "benefit": "Official certificate service; eligibility and supporting documents depend on the applicable rules.",
+      "eligibility": "As per current Revenue Department requirements.",
+      "application_process": "Apply through the Tamil Nadu e-Sevai citizen portal or a supported e-Sevai centre.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.tnesevai.tn.gov.in/citizen/",
+        "https://tnesevai.tn.gov.in/Citizen/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official TNeGA service listing",
+      "freshness_note": "Retrieve current checklist, fees and timeline from the service listing at answer time.",
+      "confidence": "official service listing"
+    },
+    {
+      "id": "TNS013",
+      "name": "Nativity Certificate",
+      "category": "Certificate / revenue service",
+      "benefit": "Official certificate service.",
+      "eligibility": "As per current Revenue Department rules.",
+      "application_process": "Apply through the e-Sevai citizen portal or a supported e-Sevai centre.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.tnesevai.tn.gov.in/citizen/",
+        "https://tnesevai.tn.gov.in/Citizen/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official TNeGA service listing",
+      "freshness_note": "Do not infer residence-duration rules without a current official source.",
+      "confidence": "official service listing"
+    },
+    {
+      "id": "TNS014",
+      "name": "Income Certificate",
+      "category": "Certificate / revenue service",
+      "benefit": "Official certificate service often requested for benefits; each receiving scheme may impose its own rules.",
+      "eligibility": "As per current Revenue Department requirements.",
+      "application_process": "Apply through the e-Sevai citizen portal or a supported e-Sevai centre.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.tnesevai.tn.gov.in/citizen/",
+        "https://tnesevai.tn.gov.in/Citizen/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official TNeGA service listing",
+      "freshness_note": "Keep certificate requirements separate from a scheme's income eligibility rules.",
+      "confidence": "official service listing"
+    },
+    {
+      "id": "TNS015",
+      "name": "First Graduate Certificate",
+      "category": "Certificate / education support",
+      "benefit": "Certificate service that may be relevant to education admissions/benefits depending on the receiving scheme.",
+      "eligibility": "As per current service rules.",
+      "application_process": "Check the current e-Sevai citizen service listing.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.tnesevai.tn.gov.in/citizen/",
+        "https://tnesevai.tn.gov.in/Citizen/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official TNeGA service listing",
+      "freshness_note": "Do not imply that the certificate automatically grants a benefit.",
+      "confidence": "official service listing"
+    },
+    {
+      "id": "TNS016",
+      "name": "Legal Heir Certificate",
+      "category": "Certificate / revenue service",
+      "benefit": "Official certificate service.",
+      "eligibility": "As per current Revenue Department requirements.",
+      "application_process": "Check the current e-Sevai service listing and apply through an authorized route.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.tnesevai.tn.gov.in/citizen/",
+        "https://tnesevai.tn.gov.in/Citizen/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official TNeGA service listing",
+      "freshness_note": "Legal heir determination can be fact-specific; avoid presenting general information as legal advice.",
+      "confidence": "official service listing"
+    },
+    {
+      "id": "TNS017",
+      "name": "Widow Certificate",
+      "category": "Certificate / social welfare",
+      "benefit": "Official certificate service.",
+      "eligibility": "As per current Revenue Department requirements.",
+      "application_process": "Check the e-Sevai service listing for current procedure and documents.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.tnesevai.tn.gov.in/citizen/",
+        "https://tnesevai.tn.gov.in/Citizen/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official TNeGA service listing",
+      "freshness_note": "Certificate issuance and pension eligibility are separate decisions.",
+      "confidence": "official service listing"
+    },
+    {
+      "id": "TNS018",
+      "name": "Unemployment Certificate",
+      "category": "Certificate / employment",
+      "benefit": "Official certificate service; acceptance depends on the receiving programme or authority.",
+      "eligibility": "As per current service rules.",
+      "application_process": "Check the e-Sevai citizen service listing.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.tnesevai.tn.gov.in/citizen/",
+        "https://tnesevai.tn.gov.in/Citizen/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official TNeGA service listing",
+      "freshness_note": "Do not imply the certificate itself provides employment or financial assistance.",
+      "confidence": "official service listing"
+    },
+    {
+      "id": "TNS019",
+      "name": "Small / Marginal Farmer Certificate",
+      "category": "Agriculture / certificate",
+      "benefit": "Official certificate service relevant to applicable farmer programmes.",
+      "eligibility": "As per current Agriculture/Revenue Department rules.",
+      "application_process": "Check the e-Sevai citizen service listing for the current route and documents.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.tnesevai.tn.gov.in/citizen/",
+        "https://tnesevai.tn.gov.in/Citizen/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official TNeGA service listing",
+      "freshness_note": "Do not infer landholding thresholds without a current official source.",
+      "confidence": "official service listing"
+    },
+    {
+      "id": "TNS020",
+      "name": "Inter-Caste Marriage Certificate",
+      "category": "Certificate / marriage and welfare",
+      "benefit": "Official certificate service; separate marriage-assistance schemes may have additional criteria.",
+      "eligibility": "As per current service rules and, where relevant, the separate scheme's guidelines.",
+      "application_process": "Check the e-Sevai citizen service listing and relevant welfare department.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.tnesevai.tn.gov.in/citizen/",
+        "https://tnesevai.tn.gov.in/Citizen/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official TNeGA service listing",
+      "freshness_note": "Do not conflate certificate issuance with eligibility for financial assistance.",
+      "confidence": "official service listing"
+    },
+    {
+      "id": "TNS021",
+      "name": "Agricultural Income Certificate",
+      "category": "Certificate / agriculture",
+      "benefit": "Official certificate service.",
+      "eligibility": "As per current service rules.",
+      "application_process": "Check e-Sevai service listing for current procedure.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.tnesevai.tn.gov.in/citizen/",
+        "https://tnesevai.tn.gov.in/Citizen/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official TNeGA service listing",
+      "freshness_note": "Do not treat agricultural income as household income unless the target scheme's rules say so.",
+      "confidence": "official service listing"
+    },
+    {
+      "id": "TNS022",
+      "name": "Family Migration Certificate",
+      "category": "Certificate / revenue service",
+      "benefit": "Official certificate service.",
+      "eligibility": "As per current service rules.",
+      "application_process": "Check the e-Sevai citizen service listing.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.tnesevai.tn.gov.in/citizen/",
+        "https://tnesevai.tn.gov.in/Citizen/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official TNeGA service listing",
+      "freshness_note": "Confirm current requirements and availability before guidance.",
+      "confidence": "official service listing"
+    },
+    {
+      "id": "TNS023",
+      "name": "Birth Certificate Service",
+      "category": "Vital records",
+      "benefit": "Official birth record service; registration/correction/copy processes may differ.",
+      "eligibility": "Depends on whether the request is registration, certified copy, or correction.",
+      "application_process": "Use the relevant local body or official e-Sevai route; confirm jurisdiction and current procedure.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://deg.tn.gov.in/services.html",
+        "https://www.tnesevai.tn.gov.in/citizen/"
+      ],
+      "source_status": "Official service categories identified; determine correct local portal by jurisdiction",
+      "freshness_note": "Distinguish urban local-body and rural registration routes.",
+      "confidence": "official service category; route requires context"
+    },
+    {
+      "id": "TNS024",
+      "name": "Death Certificate Service",
+      "category": "Vital records",
+      "benefit": "Official death record service; registration and certified-copy requests may differ.",
+      "eligibility": "Depends on request type and registration jurisdiction.",
+      "application_process": "Use the responsible local body or official e-Sevai route after confirming jurisdiction.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://deg.tn.gov.in/services.html",
+        "https://www.tnesevai.tn.gov.in/citizen/"
+      ],
+      "source_status": "Official service categories identified; route requires context",
+      "freshness_note": "Confirm the responsible registering authority and current procedure.",
+      "confidence": "official service category; route requires context"
+    },
+    {
+      "id": "TNS025",
+      "name": "Patta / Chitta / Land Records",
+      "category": "Land records",
+      "benefit": "Online land-record information and related services through the official Tamil Nadu portal.",
+      "eligibility": "Depends on the requested service, such as viewing records or requesting a transfer/correction.",
+      "application_process": "Use the official Tamil Nadu land e-services portal and follow the specific service workflow.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://eservices.tn.gov.in/eservicesnew/",
+      "source_urls": [
+        "https://eservices.tn.gov.in/eservicesnew/",
+        "https://www.tnesevai.tn.gov.in/citizen/"
+      ],
+      "source_status": "Official state service portal identified; verify specific service instructions",
+      "freshness_note": "Do not treat a land-record lookup as a legal title guarantee.",
+      "confidence": "official portal"
+    },
+    {
+      "id": "TNS026",
+      "name": "Tamil Nilam Citizen Services",
+      "category": "Land records",
+      "benefit": "Tamil Nadu citizen portal associated with land-record services.",
+      "eligibility": "Depends on the selected service.",
+      "application_process": "Use the citizen portal and follow current instructions.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://tamilnilam.tn.gov.in/citizen",
+      "source_urls": [
+        "https://tamilnilam.tn.gov.in/citizen"
+      ],
+      "source_status": "Portal seed URL; verify current availability and service scope",
+      "freshness_note": "Check redirects and current ownership before production indexing.",
+      "confidence": "portal requires live verification"
+    },
+    {
+      "id": "TNS027",
+      "name": "Tamil Nadu e-Sevai Citizen Services",
+      "category": "Unified citizen services",
+      "benefit": "Online access to various department services, including revenue certificates and other listed services.",
+      "eligibility": "Varies by service.",
+      "application_process": "Register/sign in as required or visit an authorized e-Sevai centre; use the current service list for documents, fees and timelines.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "source_urls": [
+        "https://www.tnesevai.tn.gov.in/citizen/",
+        "https://tnesevai.tn.gov.in/Citizen/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official TNeGA portal",
+      "freshness_note": "Service count and listings can change; fetch current listing rather than hardcoding totals.",
+      "confidence": "official portal"
+    },
+    {
+      "id": "TNS028",
+      "name": "Rural Development and Panchayat Raj State Schemes",
+      "category": "Rural development / local government",
+      "benefit": "Department lists state schemes and rural infrastructure programmes; individual schemes may serve local bodies rather than provide direct household cash benefits.",
+      "eligibility": "Varies by programme; distinguish citizen-benefit schemes from local-body infrastructure schemes.",
+      "application_process": "Consult the department's current scheme page, district/block office, or relevant local body.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://tnrd.tn.gov.in/schemes_states.html",
+      "source_urls": [
+        "https://tnrd.tn.gov.in/",
+        "https://tnrd.tn.gov.in/schemes_states.html"
+      ],
+      "source_status": "Official department scheme directory; page may contain older entries",
+      "freshness_note": "Check publication dates and current Government Orders before describing a scheme as active.",
+      "confidence": "official directory; scheme status needs verification"
+    },
+    {
+      "id": "TNS029",
+      "name": "National Fishermen Savings-cum-Relief Scheme (service listing in Tamil Nadu e-Sevai)",
+      "category": "Fisheries / livelihood support",
+      "benefit": "The e-Sevai service list identifies an application service; current benefit terms must be confirmed from the responsible department.",
+      "eligibility": "Specific to the current programme rules and eligible fisher community/category.",
+      "application_process": "Check the current e-Sevai listing and Fisheries Department instructions.",
+      "documents_reported_by_source": [
+        "Aadhaar card",
+        "Recent photograph",
+        "Smart/ration card number",
+        "Bank passbook first page",
+        "Fishermen Cooperative Society passbook with photo",
+        "Voter card",
+        "Biometric identity card",
+        "Address proof when required"
+      ],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/",
+      "source_urls": [
+        "https://tnesevai.tn.gov.in/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official e-Sevai service listing; confirm current programme status and checklist",
+      "freshness_note": "Listed documents are reported by the source and should be rechecked before advising.",
+      "confidence": "official service listing; current terms require verification"
+    },
+    {
+      "id": "TNS030",
+      "name": "Tamil Nadu Marine Fisherwomen Savings-cum-Relief Scheme (service listing)",
+      "category": "Fisheries / women / livelihood support",
+      "benefit": "The e-Sevai service list identifies an application service; current benefit terms must be confirmed from the responsible department.",
+      "eligibility": "Specific to current scheme rules and eligible fisherwomen categories.",
+      "application_process": "Check the current e-Sevai listing and Fisheries Department instructions.",
+      "documents_reported_by_source": [
+        "Aadhaar card",
+        "Recent photograph",
+        "Smart/ration card number",
+        "Bank passbook first page",
+        "Fishermen Cooperative Society passbook with photo",
+        "Voter card",
+        "Biometric identity card",
+        "Address proof when required"
+      ],
+      "official_application_url": "https://www.tnesevai.tn.gov.in/",
+      "source_urls": [
+        "https://tnesevai.tn.gov.in/Pages/ServiceList.aspx"
+      ],
+      "source_status": "Official e-Sevai service listing; confirm current programme status and checklist",
+      "freshness_note": "Verify current availability, rules and benefit amount.",
+      "confidence": "official service listing; current terms require verification"
+    },
+    {
+      "id": "TNS031",
+      "name": "Scholarship directory – Directorate of College Education",
+      "category": "Education / scholarships",
+      "benefit": "The department page lists scholarship programmes and their described eligibility/benefit details; these vary by scheme.",
+      "eligibility": "Scheme-specific; retrieve the relevant entry rather than applying a single rule to all scholarships.",
+      "application_process": "Follow the application route specified by the relevant scheme and department.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://tndce.tn.gov.in/Home/scholarship",
+      "source_urls": [
+        "https://tndce.tn.gov.in/Home/scholarship"
+      ],
+      "source_status": "Official department scholarship page identified; verify each scheme's current status",
+      "freshness_note": "Some pages may describe older schemes; confirm current academic year and Government Orders.",
+      "confidence": "official directory; scheme-specific verification required"
+    },
+    {
+      "id": "TNS032",
+      "name": "Tamil Nadu Government Budget / Announcements – Scheme Discovery",
+      "category": "Government announcements / scheme discovery",
+      "benefit": "Budget documents may announce proposed or funded initiatives; an announcement alone does not establish application availability.",
+      "eligibility": "Not applicable until the relevant scheme's formal guidelines are published.",
+      "application_process": "Use budget documents to discover announcements, then verify with the responsible department and current Government Orders.",
+      "documents_reported_by_source": [],
+      "official_application_url": "https://www.tnbudget.tn.gov.in/",
+      "source_urls": [
+        "https://www.tnbudget.tn.gov.in/tnweb_files/CB%202025_2026_English.pdf"
+      ],
+      "source_status": "Official budget source; announcements require downstream verification",
+      "freshness_note": "Mark proposals, announcements and operational schemes as different statuses.",
+      "confidence": "official announcement source; not proof of open applications"
+    }
+  ],
+  "scheme_record_count": 32,
+  "data_model_version": "2.0",
+  "rag_ingestion_instructions": {
+    "primary_seed": "links",
+    "structured_scheme_seed": "schemes_and_services",
+    "important": "These structured records are source-grounded starter records, not a complete or permanently current scheme catalogue. Re-fetch every source before production use.",
+    "never_infer": [
+      "active_application_status",
+      "current benefit amount",
+      "eligibility approval",
+      "mandatory documents",
+      "application deadline"
+    ],
+    "recommended_workflow": [
+      "verify official source domain",
+      "fetch source page and linked current government orders",
+      "extract scheme-specific evidence",
+      "store each fact with source URL and retrieval timestamp",
+      "mark uncertain or outdated fields for verification",
+      "recheck time-sensitive records periodically"
+    ],
+    "jurisdiction_rule": "Keep Tamil Nadu state and Tamil Nadu local-body services. Clearly label centrally sponsored schemes administered in Tamil Nadu rather than representing them as Tamil Nadu-only schemes."
+  },
+  "source_references_used_for_structured_records": [
+    {
+      "name": "TNeGA e-Sevai Citizen Portal",
+      "url": "https://www.tnesevai.tn.gov.in/citizen/",
+      "supports": "Citizen portal and listed certificate/service categories"
+    },
+    {
+      "name": "TNeGA e-Sevai Service List",
+      "url": "https://tnesevai.tn.gov.in/Pages/ServiceList.aspx",
+      "supports": "Service names and source-reported document lists"
+    },
+    {
+      "name": "Directorate of e-Governance Services",
+      "url": "https://deg.tn.gov.in/services.html",
+      "supports": "Citizen service categories"
+    },
+    {
+      "name": "Commissionerate of Revenue Administration – Eligibility Criteria",
+      "url": "https://www.cra.tn.gov.in/eleg_schemes.php",
+      "supports": "Source-reported pension scheme eligibility criteria"
+    },
+    {
+      "name": "Commissionerate of Revenue Administration – Social Security Schemes",
+      "url": "https://www.cra.tn.gov.in/about_schemes.php",
+      "supports": "Pension programme descriptions and historically stated amounts"
+    },
+    {
+      "name": "Tamil Nadu Rural Development – State Schemes",
+      "url": "https://tnrd.tn.gov.in/schemes_states.html",
+      "supports": "Department scheme directory; active status needs checking"
+    },
+    {
+      "name": "Directorate of College Education – Scholarships",
+      "url": "https://tndce.tn.gov.in/Home/scholarship",
+      "supports": "Scholarship directory; scheme-specific current verification needed"
+    },
+    {
+      "name": "Tamil Nadu Institute of Labour Studies – Government Schemes",
+      "url": "https://tils.tn.gov.in/schemes",
+      "supports": "Pudhumai Penn and Tamil Pudhalvan page details"
+    },
+    {
+      "name": "Tamil Nadu State Budget 2025–26",
+      "url": "https://www.tnbudget.tn.gov.in/tnweb_files/CB%202025_2026_English.pdf",
+      "supports": "Scheme announcements and discovery only; not proof applications are open"
+    }
+  ]
+}
