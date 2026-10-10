@@ -136,7 +136,7 @@ oumi train -c oumi/config.yaml
 
 The chat backend checks Tamil Nadu scheme questions, explicit district lookups, TNEA counselling, district election questions, and city-specific event questions against the GET endpoints documented at [tn-info.in/#api](https://www.tn-info.in/#api). Requests use `https://api.tn-info.in` directly from the server, with a 7-second timeout and a 5-minute Next.js cache. TN-Info documents these endpoints as public and unauthenticated; no TN-Info environment variable or API key is needed.
 
-For matching questions, the retrieved JSON is provided to the existing OpenRouter model as untrusted reference data. The response includes TN-Info attribution, valid source links supplied in the response, and update/retrieval timestamps when available. If the API is unavailable, returns empty data, or the request is unsupported, the backend returns a clear fallback instead of asking the model to fill in missing facts. TN-Info is an independent best-effort source, not a government website; verify important details with official sources.
+For matching questions, the retrieved JSON is provided to the existing OpenRouter model as untrusted reference data. The response includes TN-Info attribution, valid source links supplied in the response, and update/retrieval timestamps when available. If TN-Info is unavailable or returns no data, the model still provides cautious Tamil Nadu-specific guidance where possible, clearly notes that current details were not live-verified, and avoids guessing eligibility, amounts, deadlines, contacts, or procedures. For broad scheme-discovery requests without reliable data, it asks what kind of support the user needs rather than listing unverified schemes. Unsupported lookups ask for the missing details or explain the documented limitation. TN-Info is an independent best-effort source, not a government website; verify important details with official sources.
 
 Currently supported documented routes:
 
@@ -146,9 +146,15 @@ Currently supported documented routes:
 * `GET /v1/counselling/tnea/rounds` for TNEA counselling rounds
 * `GET /v1/events?city={city}` for city-filtered events
 
-The integration deliberately does not infer undocumented endpoints or election years. For example, election lookups other than 2024 are reported as unsupported by the documented source.
+When TN-Info does not have a successful result, civic questions use OpenRouter's web-search tool to find current information restricted to Indian Government and National Informatics Centre (`.gov.in`/`.nic.in`) pages. Search queries redact email addresses and phone-like/12-digit numbers. Retrieved pages are used as untrusted model context, and citation links are shown with the response. Web search uses the existing `OPENROUTER_API_KEY` and may incur additional OpenRouter search/model costs.
 
-To test manually, run the app and ask: “Show me information about the Madurai district,” “What are the TNEA counselling rounds?”, “Show me public events in Madurai,” or “Tell me about government schemes available in Tamil Nadu.” The response should include a TN-Info source card. Non-TN-Info questions continue through the existing chatbot flow.
+The integration deliberately does not infer undocumented TN-Info endpoints or election years. For example, election lookups other than 2024 are unsupported by the documented API, but can still be answered from official government web pages if the search returns relevant material.
+
+To test manually, run the app and ask: “Show me information about the Madurai district,” “What are the TNEA counselling rounds?”, “Show me public events in Madurai,” or “Tell me about government schemes available in Tamil Nadu.” TN-Info is tried first for supported categories; if it is unavailable or the question is not covered by a documented endpoint, the assistant searches official government pages and displays the sources it retrieved. Non-civic questions continue through the existing chatbot flow.
+
+### Guided civic workflows
+
+New chats explain the guided process. When a message is recognized as a Tamil Nadu civic request, the assistant returns a structured answer and an ordered 3–7 step checklist. Citizens complete the active step, can ask the assistant for help with that step, and the progress is saved in message metadata so it remains after reloading the chat. Later steps cannot be checked off before earlier ones; reopening an earlier step clears subsequent completion marks. This uses the existing MongoDB message metadata and does not require a Prisma migration.
 
 ---
 

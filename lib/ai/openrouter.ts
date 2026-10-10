@@ -31,6 +31,7 @@ export interface ChatOptions {
   temperature?: number;
   max_tokens?: number;
   stream?: boolean;
+  response_format?: { type: "json_object" };
 }
 
 export async function openRouterChatCompletion(
@@ -49,6 +50,7 @@ export async function openRouterChatCompletion(
     })),
     temperature: options.temperature ?? AI_CONFIG.openrouter.defaultTemperature,
     max_tokens: options.max_tokens ?? AI_CONFIG.openrouter.defaultMaxTokens,
+    ...(options.response_format ? { response_format: options.response_format } : {}),
     stream: false,
   });
 

@@ -1,28 +1,28 @@
 export const CHAT_CONFIG = {
   sampleQueries: [
     {
-      text: "What is PM-KISAN scheme and how do I apply?",
-      category: "Scheme Info",
+      text: "What government schemes are available in Tamil Nadu?",
+      category: "Tamil Nadu Schemes",
     },
     {
-      text: "Generate an RTI application for property records",
-      category: "Document",
+      text: "Tell me about the Madurai district",
+      category: "District Info",
     },
     {
-      text: "Explain eligibility for SNAP benefits in the USA",
-      category: "Eligibility",
+      text: "What are the TNEA counselling rounds?",
+      category: "Education",
     },
     {
-      text: "Create a complaint letter about potholes in my area",
-      category: "Complaint",
+      text: "Show me public events in Madurai",
+      category: "Local Events",
     },
     {
-      text: "What documents are needed for passport application?",
-      category: "Documents",
+      text: "Show me the 2024 election information for Madurai district",
+      category: "Election Info",
     },
     {
-      text: "How to apply for unemployment benefits?",
-      category: "Application",
+      text: "How can I report an uncollected garbage issue in Chennai?",
+      category: "Civic Services",
     },
   ],
   conversationHistoryLimit: 10,
@@ -30,4 +30,3 @@ export const CHAT_CONFIG = {
   defaultChatTitle: "New Chat",
   maxTitleLength: 50,
 } as const;
-
