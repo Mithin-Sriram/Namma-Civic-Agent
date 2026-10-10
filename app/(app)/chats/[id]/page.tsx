@@ -1,8 +1,9 @@
 import { ChatsSidebar } from "@/components/app/ChatsSidebar";
 import { ChatView } from "@/components/app/ChatView";
 import { prisma } from "@/lib/prisma";
-import { checkDatabaseConnection, getOrCreateUser, getAuthenticatedUser } from "@/lib/db";
+import { checkDatabaseConnection, getOrCreateUser } from "@/lib/db";
 import { redirect } from "next/navigation";
+import { parseTNInfoAttribution } from "@/lib/tn-info/types";
 
 interface ChatPageProps {
   params: Promise<{ id: string }>;
@@ -13,12 +14,6 @@ export default async function ChatPage({ params, searchParams }: ChatPageProps) 
   const { id } = await params;
   const searchParamsData = await searchParams;
   const initialQuery = searchParamsData.q;
-  const authData = await getAuthenticatedUser();
-  if (!authData) {
-    redirect("/");
-  }
-
-  const { user, email, name, avatar } = authData;
 
   const dbConnected = await checkDatabaseConnection();
   if (!dbConnected) {
@@ -36,7 +31,7 @@ export default async function ChatPage({ params, searchParams }: ChatPageProps) 
 
   let dbUser;
   try {
-    dbUser = await getOrCreateUser(user.id, email, name, avatar);
+    dbUser = await getOrCreateUser();
   } catch (error) {
     console.error("Error getting or creating user:", error);
     return (
@@ -99,6 +94,7 @@ export default async function ChatPage({ params, searchParams }: ChatPageProps) 
     role: msg.role as "user" | "assistant",
     content: msg.content,
     createdAt: msg.createdAt,
+    tnInfo: parseTNInfoAttribution(msg.metadata),
     attachments: (msg.attachments || []).length > 0 ? (msg.attachments || []).map((file: any) => ({
       id: file.id,
       filename: file.filename,
@@ -122,4 +118,3 @@ export default async function ChatPage({ params, searchParams }: ChatPageProps) 
     </div>
   );
 }
-

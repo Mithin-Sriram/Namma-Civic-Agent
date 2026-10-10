@@ -2,9 +2,6 @@
 
 import { ThemeToggle } from "@/components/global/ThemeToggle";
 import { Breadcrumbs } from "@/components/app/Breadcrumbs";
-import { SignOutButton } from "@clerk/nextjs";
-import { Button } from "@/components/ui/button";
-import { LogOut } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import config from "@/config";
@@ -30,17 +27,6 @@ export function AppHeader() {
         
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <SignOutButton redirectUrl="/">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-9 w-9"
-              type="button"
-              title="Logout"
-            >
-              <LogOut className="h-4 w-4" />
-            </Button>
-          </SignOutButton>
         </div>
       </div>
     </header>

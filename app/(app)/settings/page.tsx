@@ -1,16 +1,8 @@
 import { ChatsSidebar } from "@/components/app/ChatsSidebar";
 import { prisma } from "@/lib/prisma";
-import { checkDatabaseConnection, getOrCreateUser, getAuthenticatedUser } from "@/lib/db";
-import { redirect } from "next/navigation";
+import { checkDatabaseConnection, getOrCreateUser } from "@/lib/db";
 
 export default async function SettingsPage() {
-  const authData = await getAuthenticatedUser();
-  if (!authData) {
-    redirect("/");
-  }
-
-  const { user, email, name, avatar } = authData;
-
   const dbConnected = await checkDatabaseConnection();
   if (!dbConnected) {
     return (
@@ -25,7 +17,7 @@ export default async function SettingsPage() {
     );
   }
 
-  const dbUser = await getOrCreateUser(user.id, email, name, avatar).catch(() => null);
+  const dbUser = await getOrCreateUser().catch(() => null);
 
   if (!dbUser) {
     return (
@@ -64,11 +56,11 @@ export default async function SettingsPage() {
               <div className="space-y-4">
                 <div>
                   <label className="text-sm font-medium text-muted-foreground">Name</label>
-                  <p className="text-sm mt-1">{user.fullName || user.firstName || user.username || "Not set"}</p>
+                  <p className="text-sm mt-1">{dbUser.name || "Local User"}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-muted-foreground">Email</label>
-                  <p className="text-sm mt-1">{email}</p>
+                  <p className="text-sm mt-1">{dbUser.email}</p>
                 </div>
               </div>
             </div>

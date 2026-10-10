@@ -1,6 +1,7 @@
 import { OUMI_CONFIG } from "@/config/oumi";
-import { openAIChatCompletion } from "@/lib/ai/openai";
-import type { AIMessage } from "@/lib/ai/openai";
+import { openRouterChatCompletion } from "@/lib/ai/openrouter";
+import type { AIMessage } from "@/lib/ai/openrouter";
+import { CIVIC_SYSTEM_PROMPT } from "@/lib/ai/prompts";
 
 export interface OumiQueryRequest {
   query: string;
@@ -10,7 +11,7 @@ export interface OumiQueryRequest {
 
 export interface OumiQueryResponse {
   response: string;
-  model: "oumi" | "openai";
+  model: "oumi" | "openrouter";
   timestamp: Date;
 }
 
@@ -30,14 +31,14 @@ export async function queryOumiModel(
         timestamp: new Date(),
       };
     } catch (error) {
-      console.error("Oumi model query failed, falling back to OpenAI:", error);
+      console.error("Oumi model query failed, falling back to OpenRouter:", error);
     }
   }
 
   const messages: AIMessage[] = [
     {
       role: "system",
-      content: "You are a helpful assistant specialized in civic queries and government schemes across multiple countries (India, USA, UK, Canada, Australia). Provide accurate, detailed information about government programs, eligibility criteria, application processes, and required documents.",
+      content: CIVIC_SYSTEM_PROMPT,
     },
     ...conversationHistory.map((msg) => ({
       role: msg.role as "user" | "assistant",
@@ -49,11 +50,11 @@ export async function queryOumiModel(
     },
   ];
 
-  const response = await openAIChatCompletion({ messages });
+  const response = await openRouterChatCompletion({ messages });
 
   return {
     response,
-    model: "openai",
+    model: "openrouter",
     timestamp: new Date(),
   };
 }
@@ -74,6 +75,10 @@ async function queryOumiAPI(
     },
     body: JSON.stringify({
       messages: [
+        {
+          role: "system",
+          content: CIVIC_SYSTEM_PROMPT,
+        },
         ...conversationHistory.map((msg) => ({
           role: msg.role,
           content: msg.content,

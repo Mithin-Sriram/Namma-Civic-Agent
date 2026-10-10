@@ -1,4 +1,4 @@
-# Oumi Fine-tuning for CivicLens
+# Oumi Fine-tuning for Namma-Civic-Agent
 
 Fine-tuned model specifically for Indian civic queries and government scheme information.
 
@@ -33,8 +33,7 @@ After fine-tuning, the model can be used for:
 
 ## Integration
 
-The fine-tuned model can be integrated into CivicLens by:
+The fine-tuned model can be integrated into Namma-Civic-Agent by:
 1. Deploying the model endpoint
 2. Updating `lib/ai/service.ts` to use the fine-tuned model
 3. Using it for specialized civic queries
-

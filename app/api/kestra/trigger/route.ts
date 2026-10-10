@@ -1,14 +1,8 @@
 import { NextResponse } from "next/server";
-import { getAuthenticatedUser } from "@/lib/db";
 
 export async function POST(req: Request) {
   try {
-    const authData = await getAuthenticatedUser();
-    if (!authData) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const { workflowId, namespace = "civiclens", inputs } = await req.json();
+    const { workflowId, namespace = "namma-civic-agent", inputs } = await req.json();
 
     if (!workflowId) {
       return NextResponse.json(
@@ -57,4 +51,3 @@ export async function POST(req: Request) {
     );
   }
 }
-

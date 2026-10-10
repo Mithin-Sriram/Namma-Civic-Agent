@@ -1,14 +1,8 @@
 import { NextResponse } from "next/server";
-import { getAuthenticatedUser } from "@/lib/db";
 import { OUMI_CONFIG } from "@/config/oumi";
 
 export async function POST(req: Request) {
   try {
-    const authData = await getAuthenticatedUser();
-    if (!authData) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     const { configPath } = await req.json().catch(() => ({}));
     const configFile = configPath || OUMI_CONFIG.configPath;
 
@@ -31,8 +25,8 @@ export async function POST(req: Request) {
         "1. Install Oumi: pip install oumi[gpu]",
         "2. Run training command (see 'command' field above)",
         "3. Training takes 30-60 minutes",
-        "4. Model will be saved to: ./models/civiclens-finetuned",
-        "5. Start model server: oumi serve --model ./models/civiclens-finetuned --port 8000",
+        "4. Model will be saved to: ./models/namma-civic-agent-finetuned",
+        "5. Start model server: oumi serve --model ./models/namma-civic-agent-finetuned --port 8000",
         "6. Set OUMI_MODEL_URL=http://localhost:8000 in .env.local",
       ],
       note: "For production, use a job queue or separate training service. This endpoint provides instructions only.",

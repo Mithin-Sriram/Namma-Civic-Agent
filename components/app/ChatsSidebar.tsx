@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useUser } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -37,7 +36,6 @@ interface ChatsSidebarProps {
 
 export function ChatsSidebar({ chats }: ChatsSidebarProps) {
   const pathname = usePathname();
-  const { user } = useUser();
   const { createChat, updateChat, deleteChat, isLoading } = useChatOperations();
   const [localChats, setLocalChats] = useState<Chat[]>(chats);
   const [hoveredChat, setHoveredChat] = useState<string | null>(null);
@@ -289,10 +287,10 @@ export function ChatsSidebar({ chats }: ChatsSidebarProps) {
       <div className="border-t border-border/50 bg-sidebar/50 px-3 flex items-center justify-between h-14">
         <div className="flex-1 min-w-0 flex flex-col justify-center">
           <p className="text-sm font-semibold text-sidebar-foreground truncate leading-tight">
-            {user?.fullName || user?.firstName || user?.username || "User"}
+            Local User
           </p>
           <p className="text-xs text-muted-foreground truncate leading-tight mt-0.5">
-            {user?.primaryEmailAddress?.emailAddress || "\u00A0"}
+            local@namma-civic-agent.local
           </p>
         </div>
         <Button
@@ -347,4 +345,3 @@ export function ChatsSidebar({ chats }: ChatsSidebarProps) {
     </div>
   );
 }
-

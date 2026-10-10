@@ -14,7 +14,7 @@ This guide covers the most powerful features of Cline to help you win the hackat
 4. [Context Management Best Practices](#context-management-best-practices)
 5. [Browser Automation](#browser-automation)
 6. [Advanced Tips & Tricks](#advanced-tips--tricks)
-7. [CivicLens-Specific Ideas](#civiclens-specific-ideas)
+7. [Namma-Civic-Agent-Specific Ideas](#namma-civic-agent-specific-ideas)
 
 ---
 
@@ -48,7 +48,7 @@ Cline will automatically:
 2. Configure it in your settings
 3. Make it available for future tasks
 
-### MCP Server Ideas for CivicLens 🏛️
+### MCP Server Ideas for Namma-Civic-Agent 🏛️
 
 1. **Government Data Fetcher**
    ```
@@ -67,7 +67,7 @@ Cline will automatically:
 
 4. **Database Query Tool**
    ```
-   "Add a tool that queries the CivicLens database for common questions"
+   "Add a tool that queries the Namma-Civic-Agent database for common questions"
    ```
 
 5. **Notification Sender**
@@ -85,7 +85,7 @@ import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
 const server = new Server({
-  name: "civiclens-gov-data",
+  name: "namma-civic-agent-gov-data",
   version: "1.0.0",
 }, {
   capabilities: {
@@ -182,7 +182,7 @@ For long-running commands like `npm run dev`, Cline can:
 
 3. **Break Down Tasks**: Large tasks should be split:
    ```
-   ❌ "Build the entire CivicLens backend"
+   ❌ "Build the entire Namma-Civic-Agent backend"
    ✅ "Create the API endpoint for fetching scheme eligibility"
    ```
 
@@ -191,12 +191,12 @@ For long-running commands like `npm run dev`, Cline can:
 Create a `.clinerules` file for project-specific instructions:
 
 ```markdown
-# CivicLens Project Rules
+# Namma-Civic-Agent Project Rules
 
 ## Tech Stack
 - Next.js 14 with App Router
 - Prisma with PostgreSQL
-- Clerk for authentication
+- No authentication (local guest profile)
 - Tailwind CSS for styling
 
 ## Coding Standards
@@ -206,7 +206,7 @@ Create a `.clinerules` file for project-specific instructions:
 - Use Zod for input validation
 
 ## Project Context
-CivicLens helps citizens understand government schemes.
+Namma-Civic-Agent helps citizens understand government schemes.
 Focus on clarity and accessibility in all responses.
 ```
 
@@ -285,7 +285,7 @@ Set up hooks for automated actions:
 
 Cline understands monorepos - organize your hackathon project:
 ```
-civiclens/
+namma-civic-agent/
 ├── apps/
 │   ├── web/          # Next.js frontend
 │   └── api/          # Backend API
@@ -297,7 +297,7 @@ civiclens/
 
 ---
 
-## 🏛️ CivicLens-Specific Ideas
+## 🏛️ Namma-Civic-Agent-Specific Ideas
 
 ### Autonomous Workflows for Your Hackathon
 
@@ -353,7 +353,7 @@ graph TD
 | New Task | `Cmd+Shift+P` → "Cline: New Task" |
 | Toggle Plan/Act | Click mode toggle in Cline panel |
 
-### Useful Prompts for CivicLens
+### Useful Prompts for Namma-Civic-Agent
 
 ```
 1. "Analyze the codebase and suggest improvements for accessibility"
@@ -407,6 +407,6 @@ graph TD
 **Remember**: The hackathon prizes the best use of Cline CLI for autonomous workflows. Focus on:
 1. **MCP Servers** - Custom tools that extend capabilities
 2. **Workflow Automation** - Multi-step autonomous tasks
-3. **Real-world Impact** - CivicLens helps real citizens!
+3. **Real-world Impact** - Namma-Civic-Agent helps real citizens!
 
 Good luck! 🎉

@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAuthenticatedUser } from "@/lib/db";
 import axios from "axios";
 
 export async function GET(
@@ -7,11 +6,6 @@ export async function GET(
   context: { params: Promise<{ executionId: string }> }
 ) {
   try {
-    const authData = await getAuthenticatedUser();
-    if (!authData) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     const { executionId } = await context.params;
 
     if (!executionId) {

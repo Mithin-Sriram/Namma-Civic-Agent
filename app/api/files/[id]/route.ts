@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { getAuthenticatedUser, getOrCreateUser } from "@/lib/db";
+import { getOrCreateUser } from "@/lib/db";
 
 interface RouteParams {
   params: Promise<{ id: string }>;
@@ -9,16 +9,10 @@ interface RouteParams {
 export async function GET(req: Request, { params }: RouteParams) {
   try {
     const { id } = await params;
-    const authData = await getAuthenticatedUser();
-    if (!authData) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
 
-    const { user, email, name, avatar } = authData;
-    
     let dbUser;
     try {
-      dbUser = await getOrCreateUser(user.id, email, name, avatar);
+      dbUser = await getOrCreateUser();
     } catch (error) {
       console.error("Error getting or creating user:", error);
       return NextResponse.json(
@@ -65,16 +59,10 @@ export async function GET(req: Request, { params }: RouteParams) {
 export async function DELETE(req: Request, { params }: RouteParams) {
   try {
     const { id } = await params;
-    const authData = await getAuthenticatedUser();
-    if (!authData) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
 
-    const { user, email, name, avatar } = authData;
-    
     let dbUser;
     try {
-      dbUser = await getOrCreateUser(user.id, email, name, avatar);
+      dbUser = await getOrCreateUser();
     } catch (error) {
       console.error("Error getting or creating user:", error);
       return NextResponse.json(
@@ -107,4 +95,3 @@ export async function DELETE(req: Request, { params }: RouteParams) {
     );
   }
 }
-

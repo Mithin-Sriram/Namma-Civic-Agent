@@ -1,12 +1,12 @@
-# CivicLens Project Rules
+# Namma-Civic-Agent Project Rules
 
 ## Project Overview
-CivicLens is a civic technology application that helps citizens understand government schemes, public services, and benefits through natural language queries. The goal is to make complex government information accessible and understandable for everyone.
+Namma-Civic-Agent is a civic technology application that helps citizens understand government schemes, public services, and benefits through natural language queries. The goal is to make complex government information accessible and understandable for everyone.
 
 ## Tech Stack
 - **Framework**: Next.js 16 with App Router
 - **Database**: Prisma ORM with MongoDB
-- **Authentication**: Clerk
+- **Authentication**: Disabled for local development; chats use a shared local guest profile
 - **Styling**: Tailwind CSS with shadcn/ui components
 - **Deployment**: Vercel
 
@@ -61,7 +61,7 @@ prisma/           # Database schema
 
 ## Security
 - Never expose API keys in client code
-- Use Clerk for all authentication
+- Authentication is currently disabled; do not add auth checks to local guest flows
 - Validate user permissions on API routes
 - Sanitize user inputs to prevent XSS
 
@@ -107,4 +107,4 @@ This is a civic application - accessibility is critical:
 - Visual testing for UI components
 - Accessibility audits
 
-Remember: CivicLens serves citizens who may not be tech-savvy. Always prioritize clarity and simplicity.
+Remember: Namma-Civic-Agent serves citizens who may not be tech-savvy. Always prioritize clarity and simplicity.

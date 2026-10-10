@@ -1,10 +1,12 @@
 import { useState, useCallback, useRef, useEffect } from "react";
+import type { TNInfoAttribution } from "@/lib/tn-info/types";
 
 interface Message {
   id: string;
   role: "user" | "assistant";
   content: string;
   createdAt: Date;
+  tnInfo?: TNInfoAttribution;
 }
 
 interface UseSendMessageOptions {
@@ -12,6 +14,7 @@ interface UseSendMessageOptions {
   onSuccess?: (message: Message) => void;
   onError?: (error: string) => void;
   onStreamChunk?: (chunk: string, messageId: string) => void;
+  onTNInfo?: (attribution: TNInfoAttribution, messageId: string) => void;
   stream?: boolean;
   fileIds?: string[];
 }
@@ -21,6 +24,7 @@ export function useSendMessage({
   onSuccess, 
   onError,
   onStreamChunk,
+  onTNInfo,
   stream = true,
   fileIds = []
 }: UseSendMessageOptions) {
@@ -67,6 +71,7 @@ export function useSendMessage({
         let buffer = "";
         let assistantMessageId: string | null = null;
         let fullContent = "";
+        let tnInfoAttribution: TNInfoAttribution | undefined;
 
         if (!reader) {
           throw new Error("No response body");
@@ -92,6 +97,7 @@ export function useSendMessage({
                     role: "assistant",
                     content: fullContent,
                     createdAt: new Date(),
+                    tnInfo: tnInfoAttribution,
                   };
                   onSuccess?.(assistantMessage);
                 }
@@ -123,6 +129,15 @@ export function useSendMessage({
                     assistantMessageId = parsed.messageId;
                   }
                   onStreamChunk?.(parsed.chunk, parsed.messageId || "");
+                }
+
+                if (
+                  parsed.type === "tnInfo" &&
+                  parsed.attribution &&
+                  typeof parsed.messageId === "string"
+                ) {
+                  tnInfoAttribution = parsed.attribution;
+                  onTNInfo?.(parsed.attribution, parsed.messageId);
                 }
               } catch (e) {
               }
@@ -159,7 +174,7 @@ export function useSendMessage({
       }, 50);
       return { success: false, error: errorMessage, userMessage: tempUserMessage };
     }
-  }, [message, isLoading, chatId, onSuccess, onError, onStreamChunk, stream, fileIds]);
+  }, [message, isLoading, chatId, onSuccess, onError, onStreamChunk, onTNInfo, stream, fileIds]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -189,4 +204,3 @@ export function useSendMessage({
     inputRef,
   };
 }
-

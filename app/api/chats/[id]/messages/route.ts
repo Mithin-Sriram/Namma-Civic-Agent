@@ -1,10 +1,11 @@
 import { prisma } from "@/lib/prisma";
-import { checkDatabaseConnection, getOrCreateUser, getAuthenticatedUser } from "@/lib/db";
+import { checkDatabaseConnection, getOrCreateUser } from "@/lib/db";
 import { NextResponse } from "next/server";
 import { getChatStream } from "@/lib/ai/service";
 import { generateChatTitle } from "@/lib/ai/title";
 import { CHAT_CONFIG } from "@/config/chat";
 import { extractMultipleFileContents, formatFileContentsForPrompt } from "@/lib/files/extract";
+import { formatTNInfoUnavailableAnswer, lookupTNInfo } from "@/lib/tn-info/service";
 
 interface RouteParams {
   params: Promise<{ id: string }>;
@@ -13,12 +14,6 @@ interface RouteParams {
 export async function POST(req: Request, { params }: RouteParams) {
   try {
     const { id } = await params;
-    const authData = await getAuthenticatedUser();
-    if (!authData) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const { user, email, name, avatar } = authData;
 
     const dbConnected = await checkDatabaseConnection();
     if (!dbConnected) {
@@ -28,7 +23,7 @@ export async function POST(req: Request, { params }: RouteParams) {
       );
     }
 
-    const dbUser = await getOrCreateUser(user.id, email, name, avatar);
+    const dbUser = await getOrCreateUser();
 
     const chat = await prisma.chat.findFirst({
       where: {
@@ -62,8 +57,15 @@ export async function POST(req: Request, { params }: RouteParams) {
         const fileContents = await extractMultipleFileContents(fileIds);
         enhancedContent = formatFileContentsForPrompt(fileContents, content || "");
       } catch (error) {
+        console.error("Attached file extraction failed:", error);
       }
     }
+    const tnInfoResult = typeof content === "string" && content.trim()
+      ? await lookupTNInfo(content)
+      : null;
+    const messageMetadata = tnInfoResult
+      ? JSON.stringify({ tnInfo: tnInfoResult.attribution })
+      : undefined;
     const userMessage = await prisma.message.create({
       data: {
         chatId: chat.id,
@@ -137,10 +139,32 @@ export async function POST(req: Request, { params }: RouteParams) {
                 chatId: chat.id,
                 role: "assistant",
                 content: "",
+                metadata: messageMetadata,
               },
             });
 
-            for await (const chunk of getChatStream(enhancedContent, conversationHistory)) {
+            if (tnInfoResult) {
+              controller.enqueue(
+                encoder.encode(`data: ${JSON.stringify({
+                  type: "tnInfo",
+                  messageId: assistantMessage.id,
+                  attribution: tnInfoResult.attribution,
+                })}\n\n`)
+              );
+            }
+
+            const answerStream = tnInfoResult && tnInfoResult.attribution.status !== "success"
+              ? (async function* () {
+                  yield formatTNInfoUnavailableAnswer(tnInfoResult);
+                })()
+              : getChatStream(
+                  enhancedContent,
+                  conversationHistory,
+                  false,
+                  tnInfoResult?.promptContext
+                );
+
+            for await (const chunk of answerStream) {
               fullContent += chunk;
               controller.enqueue(
                 encoder.encode(`data: ${JSON.stringify({ 
@@ -175,7 +199,18 @@ export async function POST(req: Request, { params }: RouteParams) {
     }
 
     let fullContent = "";
-    for await (const chunk of getChatStream(enhancedContent, conversationHistory)) {
+    const answerStream = tnInfoResult && tnInfoResult.attribution.status !== "success"
+      ? (async function* () {
+          yield formatTNInfoUnavailableAnswer(tnInfoResult);
+        })()
+      : getChatStream(
+          enhancedContent,
+          conversationHistory,
+          false,
+          tnInfoResult?.promptContext
+        );
+
+    for await (const chunk of answerStream) {
       fullContent += chunk;
     }
 
@@ -184,6 +219,7 @@ export async function POST(req: Request, { params }: RouteParams) {
         chatId: chat.id,
         role: "assistant",
         content: fullContent,
+        metadata: messageMetadata,
       },
     });
 
@@ -194,6 +230,7 @@ export async function POST(req: Request, { params }: RouteParams) {
         role: assistantMessage.role,
         content: assistantMessage.content,
         createdAt: assistantMessage.createdAt,
+        tnInfo: tnInfoResult?.attribution,
       },
     });
   } catch (error) {

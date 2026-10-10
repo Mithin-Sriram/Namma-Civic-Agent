@@ -1,7 +1,7 @@
-echo "🚀 Running CivicLens Cline Workflow..."
+echo "🚀 Running Namma-Civic-Agent Cline Workflow..."
 
 cline "
-You are CivicLens' autonomous coding agent.
+You are Namma-Civic-Agent's autonomous coding agent.
 Follow these steps:
 1. Scan the repository for inconsistencies or missing best practices.
 2. Based on .clinerules, recommend 2–3 improvements.

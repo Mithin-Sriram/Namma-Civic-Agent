@@ -1,197 +1,175 @@
-# Namma Civic Agent
+# Namma-Civic-Agent
 
-An AI-powered civic assistant that helps citizens navigate government services, schemes, and public processes through natural language conversations.
+Bringing clarity to public services for everyone.
+
+Namma-Civic-Agent is a chat-based platform that helps people find answers about government schemes, public services, and civic processes. Instead of digging through government websites, you can just ask questions in plain English and get clear answers.
+
+The civic assistant is focused specifically on Tamil Nadu, India. TN-Info is used as an independent reference for documented civic-data categories; official state and Union government sources remain the final reference for current rules and procedures.
 
 ---
 
 ## Overview
 
-Namma Civic Agent is a chat-based platform that simplifies access to government information. Ask questions in plain English (or your preferred language) about schemes, eligibility, documents needed, and application processes — get clear, sourced answers instantly.
+<img width="729" height="459" alt="Namma-Civic-Agent overview" src="https://github.com/user-attachments/assets/74d21102-951d-4b4f-ad86-f01a32496873" />
 
 ---
 
-## Features
+## What it does
 
-- **Conversational Interface** — Chat naturally about civic topics; supports multiple languages
-- **Scheme Discovery** — Find relevant government schemes based on your situation
-- **Eligibility Checking** — Understand if you qualify for benefits before applying
-- **Document Guidance** — Know exactly what documents you need and where to get them
-- **Step-by-Step Process Help** — Clear instructions for applications, complaints, RTI/FOIA requests
-- **File Upload & Analysis** — Upload policy PDFs or documents; get key information extracted
-- **Multi-Country Support** — Works for India, USA, UK, Canada, Australia, and more
+**Chat interface with streaming responses**
+Ask questions about Tamil Nadu government schemes, eligibility, public services, or how to apply for benefits. Responses stream in real time using OpenRouter, with TN-Info retrieval for supported civic-data questions.
 
----
+**File uploads**
+Upload PDFs or documents related to government schemes, and the system extracts relevant information to help answer your questions.
 
-## Tech Stack
+**Query insights**
+Automatically extracts entities (schemes, offices, documents) from your questions and suggests relevant actions. Also classifies queries to better understand what you're looking for.
 
-| Layer | Technology |
-|-------|------------|
-| Framework | Next.js 16 (App Router) |
-| Database | MongoDB (via Prisma ORM) |
-| Authentication | Clerk |
-| AI/ML | OpenAI (GPT-4o / GPT-3.5-turbo) |
-| Workflow Automation | Kestra |
-| Fine-Tuning (Optional) | Oumi |
-| Styling | TailwindCSS + shadcn/ui |
-| Deployment | Vercel |
+**Kestra workflows**
+Automated workflows that can crawl government portals, extract eligibility rules from PDFs, and generate autocomplete suggestions. These run via webhooks that integrate with the main app.
+
+**Oumi fine-tuning**
+Custom dataset with 12 civic Q&A examples covering multiple countries. Can be used to fine-tune a model for better civic-specific responses, though it's optional and the app works fine with models available through OpenRouter.
 
 ---
 
-## Project Structure
+## Tech stack
 
-```
-├── app/                    # Next.js pages & API routes
-│   ├── (app)/             # Authenticated app routes (chat, settings)
-│   └── api/               # API endpoints (AI, files, Kestra webhooks)
-├── components/            # React components
-│   ├── ui/                # shadcn/ui primitives
-│   ├── app/               # Chat, sidebar, file upload components
-│   ├── home/              # Landing page sections
-│   └── global/            # Theme, providers
-├── lib/                   # Core business logic
-│   ├── ai/                # OpenAI integration, prompts, classification
-│   ├── db.ts              # Database client
-│   ├── files/             # File extraction utilities
-│   └── stores/            # Zustand state management
-├── hooks/                 # Custom React hooks
-├── prisma/                # Database schema
-├── kestra/workflows/      # Workflow definitions (YAML)
-├── oumi/                  # Fine-tuning config & dataset
-└── config/                # App configuration
-```
+* **Next.js 16** - React framework
+* **MongoDB** - Database (via Prisma)
+* **Local guest profile** - Authentication is currently disabled; local users share a guest profile
+* **OpenRouter** - AI chat responses (GPT-4o mini through OpenRouter)
+* **Kestra** - Workflow automation
+* **Oumi** - Model fine-tuning (optional)
+* **TailwindCSS + shadcn/ui** - UI components
+* **Vercel** - Deployment
 
 ---
 
-## Getting Started
+## Sponsor integrations
+
+### OpenRouter
+
+The AI gateway. Handles streaming chat responses, query classification, entity extraction, and document generation (RTI/FOIA requests, complaint letters, eligibility summaries). The app uses OpenRouter's API and the `openai/gpt-4o-mini` model. Code is in `lib/ai/` and `app/api/ai/`.
+
+### Kestra
+
+Three workflows for automating government data tasks:
+
+* Weekly scheme updates (crawls government portals)
+* Eligibility rule extractor (parses PDFs)
+* Autocomplete suggestions (matches queries to schemes)
+
+Workflows are in `kestra/workflows/` and integrate via webhook endpoints in `app/api/kestra/webhook/`.
+
+### Oumi
+
+Fine-tuning setup for a custom civic model. Dataset has 12 examples covering India, USA, UK, Canada, and Australia. Config is in `oumi/config.yaml`. The app can use a fine-tuned model if available, but falls back to OpenRouter if not.
+
+### Cline
+
+Used during development for code generation, refactoring, and multi-step feature work. `.clinerules` file contains project-specific guidelines. There's a sample workflow script at `scripts/cline-workflow.sh`.
+
+### Vercel
+
+Deployed on Vercel with edge functions for low-latency responses. GitHub integration handles automatic deployments.
+
+---
+
+## Getting started
 
 ### Prerequisites
 
-- Node.js 18+
-- MongoDB (local or MongoDB Atlas)
-- OpenAI API key
-- Clerk account for authentication
+* Node.js 18+
+* MongoDB (local or Atlas)
+* OpenRouter API key
 
-### Installation
+### Setup
+
+1. Install dependencies:
 
 ```bash
-# Clone the repository
-git clone https://github.com/Yasar-17/Namma-Civic-Agent.git
-cd Namma-Civic-Agent
-
-# Install dependencies
 npm install
-
-# Set up environment variables
-cp .env.example .env
-# Edit .env with your actual keys
 ```
 
-### Required Environment Variables
-
-| Variable | Description |
-|----------|-------------|
-| `DATABASE_URL` | MongoDB connection string |
-| `OPENAI_API_KEY` | OpenAI API key |
-| `CLERK_SECRET_KEY` | Clerk secret key |
-| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Clerk public key |
-| `NEXT_PUBLIC_APP_URL` | Your app URL (e.g., `http://localhost:3000`) |
-
-Optional:
-| Variable | Description |
-|----------|-------------|
-| `KESTRA_URL` | Kestra instance URL |
-| `KESTRA_AUTH` | Base64 encoded Kestra credentials |
-| `OUMI_ENABLED` | Enable fine-tuned model (`true`/`false`) |
-| `NEXT_PUBLIC_CLARITY_PROJECT_ID` | Microsoft Clarity analytics |
-
-### Database Setup
+2. Set up environment variables:
 
 ```bash
-# Generate Prisma client
-npx prisma generate
+cp .env.example .env
+# Edit .env with your keys
+```
 
-# Push schema to database
+Required variables:
+
+* `OPENROUTER_API_KEY` - OpenRouter API key
+* `DATABASE_URL` - MongoDB connection string
+* `KESTRA_URL` - Kestra instance URL (optional)
+* `KESTRA_AUTH` - Base64 encoded Kestra credentials (optional)
+
+3. Set up the database:
+
+```bash
+npx prisma generate
 npx prisma db push
 ```
 
-### Run Development Server
+4. Run the dev server:
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+5. (Optional) Set up Kestra:
 
----
+* Install Kestra: [https://kestra.io/docs/getting-started](https://kestra.io/docs/getting-started)
+* Deploy workflows from `kestra/workflows/`
+* Configure CORS using `kestra/application.yml`
 
-## Optional: Kestra Workflow Automation
-
-Deploy automated workflows for:
-- **Weekly Scheme Updates** — Crawl government portals for new/updated schemes
-- **Eligibility Rule Extraction** — Parse PDFs to extract structured eligibility criteria
-- **Autocomplete Suggestions** — Match user queries to relevant schemes
+6. (Optional) Fine-tune with Oumi:
 
 ```bash
-# Install Kestra (Docker)
-docker run -d --name kestra -p 8080:8080 kestra/kestra:latest
-
-# Deploy workflows from kestra/workflows/ via Kestra UI or API
-```
-
-Configure webhooks in `.env`:
-```
-KESTRA_URL=http://localhost:8080
-KESTRA_AUTH=<base64_encoded_credentials>
-```
-
----
-
-## Optional: Fine-Tuning with Oumi
-
-```bash
-# Install Oumi
 pip install oumi[gpu]
-
-# Train custom model
 oumi train -c oumi/config.yaml
 ```
 
-Dataset (`oumi/dataset.json`) includes 12 civic Q&A examples across 5 countries. Set `OUMI_ENABLED=true` and provide `OUMI_MODEL_URL` / `OUMI_API_KEY` to use the fine-tuned model.
+### TN-Info civic data
+
+The chat backend checks Tamil Nadu scheme questions, explicit district lookups, TNEA counselling, district election questions, and city-specific event questions against the GET endpoints documented at [tn-info.in/#api](https://www.tn-info.in/#api). Requests use `https://api.tn-info.in` directly from the server, with a 7-second timeout and a 5-minute Next.js cache. TN-Info documents these endpoints as public and unauthenticated; no TN-Info environment variable or API key is needed.
+
+For matching questions, the retrieved JSON is provided to the existing OpenRouter model as untrusted reference data. The response includes TN-Info attribution, valid source links supplied in the response, and update/retrieval timestamps when available. If the API is unavailable, returns empty data, or the request is unsupported, the backend returns a clear fallback instead of asking the model to fill in missing facts. TN-Info is an independent best-effort source, not a government website; verify important details with official sources.
+
+Currently supported documented routes:
+
+* `GET /v1/districts/{id}` for district details
+* `GET /v1/districts/{id}/election/2024` for the documented 2024 district election example
+* `GET /v1/schemes` for schemes
+* `GET /v1/counselling/tnea/rounds` for TNEA counselling rounds
+* `GET /v1/events?city={city}` for city-filtered events
+
+The integration deliberately does not infer undocumented endpoints or election years. For example, election lookups other than 2024 are reported as unsupported by the documented source.
+
+To test manually, run the app and ask: “Show me information about the Madurai district,” “What are the TNEA counselling rounds?”, “Show me public events in Madurai,” or “Tell me about government schemes available in Tamil Nadu.” The response should include a TN-Info source card. Non-TN-Info questions continue through the existing chatbot flow.
 
 ---
 
-## Development Commands
+## Project structure
 
-```bash
-# Lint code
-npm run lint
-
-# Build for production
-npm run build
-
-# Start production server
-npm run start
-```
+* `app/` - Next.js app router pages and API routes
+* `components/` - React components (UI, chat, file upload)
+* `lib/` - Core logic (AI services, database, file extraction)
+* `hooks/` - React hooks for chat operations
+* `prisma/` - Database schema
+* `kestra/workflows/` - Kestra workflow definitions
+* `oumi/` - Fine-tuning config and dataset
 
 ---
 
-## Contributing
+## Development notes
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+The app uses streaming responses for chat, which provides a better user experience. File uploads are stored in MongoDB (base64 encoded for small files). The Kestra workflows are separate and can be deployed independently — they communicate with the main app via webhooks.
 
 ---
 
 ## License
 
-MIT License — see [LICENSE](LICENSE) for details.
-
----
-
-## Acknowledgments
-
-- Built for the GDG Hackathon
-- Inspired by the need to make government services accessible to everyone
+MIT

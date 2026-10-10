@@ -1,6 +1,5 @@
 "use client";
 
-import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/global/ThemeToggle";
 import Link from "next/link";
@@ -16,23 +15,13 @@ export function HomeHeader() {
         
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <SignedOut>
-            <SignInButton mode="modal" forceRedirectUrl="/chats">
-              <Button variant="default" size="sm">
-                Sign In
-              </Button>
-            </SignInButton>
-          </SignedOut>
-          <SignedIn>
-            <Link href="/chats">
-              <Button variant="default" size="sm">
-                Go to Chats
-              </Button>
-            </Link>
-          </SignedIn>
+          <Link href="/chats">
+            <Button variant="default" size="sm">
+              Go to Chats
+            </Button>
+          </Link>
         </div>
       </div>
     </header>
   );
 }
-

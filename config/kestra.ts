@@ -1,7 +1,7 @@
 export const KESTRA_CONFIG = {
   url: process.env.KESTRA_URL || "http://localhost:8080",
   auth: process.env.KESTRA_AUTH || undefined,
-  namespace: "civiclens",
+  namespace: "namma-civic-agent",
   workflows: {
     weeklySchemeUpdates: "weekly-scheme-updates",
     eligibilityExtractor: "eligibility-rule-extractor",
@@ -19,6 +19,5 @@ export const KESTRA_CONFIG = {
     return !!this.url && this.url !== "http://localhost:8080" || process.env.NODE_ENV === "development";
   },
 } as const;
-
 
 

@@ -1,5 +1,5 @@
 
-import { openAIChatCompletion, openAIChatStream, AIMessage } from "./openai";
+import { openRouterChatCompletion, openRouterChatStream, AIMessage } from "./openrouter";
 import {
   getChatMessages,
   CLASSIFICATION_PROMPT,
@@ -13,9 +13,10 @@ import { OUMI_CONFIG } from "@/config/oumi";
 export async function getChatCompletion(
   userQuery: string,
   conversationHistory: Array<{ role: "user" | "assistant"; content: string }> = [],
-  useFineTuned: boolean = false
+  useFineTuned: boolean = false,
+  externalContext?: string
 ): Promise<string> {
-  if ((useFineTuned || OUMI_CONFIG.enabled) && OUMI_CONFIG.isModelAvailable()) {
+  if (!externalContext && (useFineTuned || OUMI_CONFIG.enabled) && OUMI_CONFIG.isModelAvailable()) {
     try {
       const result = await queryOumiModel({
         query: userQuery,
@@ -24,16 +25,16 @@ export async function getChatCompletion(
       });
       return result.response;
     } catch (error) {
-      console.error("Oumi model error, falling back to OpenAI:", error);
+      console.error("Oumi model error, falling back to OpenRouter:", error);
     }
   }
 
-  const messages = getChatMessages(userQuery, conversationHistory);
+  const messages = getChatMessages(userQuery, conversationHistory, externalContext);
 
   try {
-    return await openAIChatCompletion({ messages });
+    return await openRouterChatCompletion({ messages });
   } catch (error) {
-    console.error("OpenAI API error:", error);
+    console.error("OpenRouter API error:", error);
     throw error;
   }
 }
@@ -41,9 +42,10 @@ export async function getChatCompletion(
 export async function* getChatStream(
   userQuery: string,
   conversationHistory: Array<{ role: "user" | "assistant"; content: string }> = [],
-  useFineTuned: boolean = false
+  useFineTuned: boolean = false,
+  externalContext?: string
 ): AsyncGenerator<string, void, unknown> {
-  if ((useFineTuned || OUMI_CONFIG.enabled) && OUMI_CONFIG.isModelAvailable()) {
+  if (!externalContext && (useFineTuned || OUMI_CONFIG.enabled) && OUMI_CONFIG.isModelAvailable()) {
     try {
       const result = await queryOumiModel({
         query: userQuery,
@@ -57,17 +59,17 @@ export async function* getChatStream(
       }
       return;
     } catch (error) {
-      console.error("Oumi model error, falling back to OpenAI:", error);
+      console.error("Oumi model error, falling back to OpenRouter:", error);
     }
   }
 
-  const messages = getChatMessages(userQuery, conversationHistory);
+  const messages = getChatMessages(userQuery, conversationHistory, externalContext);
 
   try {
-    yield* openAIChatStream({ messages });
+    yield* openRouterChatStream({ messages });
   } catch (error) {
-    console.error("OpenAI streaming error:", error);
-    const response = await getChatCompletion(userQuery, conversationHistory, useFineTuned);
+    console.error("OpenRouter streaming error:", error);
+    const response = await getChatCompletion(userQuery, conversationHistory, useFineTuned, externalContext);
     for (const char of response) {
       yield char;
       await new Promise((resolve) => setTimeout(resolve, 10));
@@ -83,10 +85,10 @@ export async function classifyQuery(query: string): Promise<string> {
   ];
 
   try {
-    const response = await openAIChatCompletion({
+    const response = await openRouterChatCompletion({
       messages,
-      temperature: AI_CONFIG.openai.classification.temperature,
-      max_tokens: AI_CONFIG.openai.classification.maxTokens,
+      temperature: AI_CONFIG.openrouter.classification.temperature,
+      max_tokens: AI_CONFIG.openrouter.classification.maxTokens,
     });
     return response.trim().toLowerCase();
   } catch (error) {
@@ -108,10 +110,10 @@ export async function extractEntities(query: string): Promise<{
   ];
 
   try {
-    const response = await openAIChatCompletion({
+    const response = await openRouterChatCompletion({
       messages,
-      temperature: AI_CONFIG.openai.extraction.temperature,
-      max_tokens: AI_CONFIG.openai.extraction.maxTokens,
+      temperature: AI_CONFIG.openrouter.extraction.temperature,
+      max_tokens: AI_CONFIG.openrouter.extraction.maxTokens,
     });
 
     const jsonMatch = response.match(/\{[\s\S]*\}/);
@@ -148,10 +150,10 @@ export async function generateDocument(
   ];
 
   try {
-    return await openAIChatCompletion({
+    return await openRouterChatCompletion({
       messages,
-      temperature: AI_CONFIG.openai.document.temperature,
-      max_tokens: AI_CONFIG.openai.document.maxTokens,
+      temperature: AI_CONFIG.openrouter.document.temperature,
+      max_tokens: AI_CONFIG.openrouter.document.maxTokens,
     });
   } catch (error) {
     console.error("Document generation failed:", error);
