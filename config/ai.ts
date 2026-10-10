@@ -1,6 +1,6 @@
 export const AI_CONFIG = {
-  openai: {
-    defaultModel: "gpt-4o-mini",
+  openrouter: {
+    defaultModel: "openai/gpt-4o-mini",
     defaultTemperature: 0.7,
     defaultMaxTokens: 1000,
     streaming: {
@@ -25,4 +25,3 @@ export const AI_CONFIG = {
     },
   },
 } as const;
-

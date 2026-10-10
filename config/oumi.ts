@@ -3,7 +3,7 @@ export const OUMI_CONFIG = {
   apiKey: process.env.OUMI_API_KEY || undefined,
   configPath: "./oumi/config.yaml",
   datasetPath: "./oumi/dataset.json",
-  modelOutputPath: "./models/civiclens-finetuned",
+  modelOutputPath: "./models/namma-civic-agent-finetuned",
   enabled: process.env.OUMI_ENABLED === "true" || false,
   training: {
     command: process.env.OUMI_COMMAND || "oumi",

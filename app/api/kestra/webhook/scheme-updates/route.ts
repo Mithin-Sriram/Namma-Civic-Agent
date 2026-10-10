@@ -1,17 +1,11 @@
 import { NextResponse } from "next/server";
-import { getAuthenticatedUser } from "@/lib/db";
 import axios from "axios";
 
 export async function POST(req: Request) {
   try {
-    const authData = await getAuthenticatedUser();
-    if (!authData) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     const kestraUrl = process.env.KESTRA_URL || "http://localhost:8080";
 
-    const namespace = "civiclens";
+    const namespace = "namma-civic-agent";
     const workflowId = "weekly-scheme-updates";
     const webhookKey = "weekly-scheme-updates-key";
 
@@ -50,6 +44,4 @@ export async function POST(req: Request) {
     );
   }
 }
-
-
 

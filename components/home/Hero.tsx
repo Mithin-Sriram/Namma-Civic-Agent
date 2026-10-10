@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { SignInButton } from "@clerk/nextjs";
 import { cn } from "@/lib/utils";
 import config from "@/config";
 
@@ -21,17 +21,16 @@ interface HeroProps {
 }
 
 export function Hero({ hero }: HeroProps) {
+  const router = useRouter();
   const [inputValue, setInputValue] = useState("");
 
   const handleExampleClick = (example: string) => {
     setInputValue(example);
   };
 
-  const getRedirectUrl = () => {
-    if (inputValue.trim()) {
-      return `/chats?q=${encodeURIComponent(inputValue.trim())}`;
-    }
-    return "/chats";
+  const startExploring = () => {
+    const query = inputValue.trim();
+    router.push(query ? `/chats?q=${encodeURIComponent(query)}` : "/chats");
   };
 
   return (
@@ -41,7 +40,7 @@ export function Hero({ hero }: HeroProps) {
           <div className="relative flex h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm">
             <Image
               src="/logo.png"
-              alt="CivicLens"
+              alt="Namma-Civic-Agent"
               fill
               className="object-cover"
               priority
@@ -74,11 +73,9 @@ export function Hero({ hero }: HeroProps) {
               placeholder={hero.searchPlaceholder}
               className="h-10 flex-1 border-border bg-background text-base focus-visible:ring-2 focus-visible:ring-ring"
             />
-            <SignInButton mode="modal" forceRedirectUrl={getRedirectUrl()}>
-              <Button size="lg" className="h-10 text-base">
-                Sign in to explore
-              </Button>
-            </SignInButton>
+            <Button size="lg" className="h-10 text-base" onClick={startExploring}>
+              {hero.primaryCta}
+            </Button>
           </div>
 
           <div className="space-y-2.5 sm:space-y-3">

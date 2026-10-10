@@ -1,5 +1,5 @@
 id: autocomplete-suggestions
-namespace: civiclens
+namespace: namma-civic-agent
 description: Generate autocomplete suggestions based on user input and scheme data
 
 tasks:

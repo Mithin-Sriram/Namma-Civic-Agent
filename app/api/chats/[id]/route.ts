@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { checkDatabaseConnection, getOrCreateUser, getAuthenticatedUser } from "@/lib/db";
+import { checkDatabaseConnection, getOrCreateUser } from "@/lib/db";
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 
@@ -10,12 +10,6 @@ interface RouteParams {
 export async function PATCH(req: Request, { params }: RouteParams) {
   try {
     const { id } = await params;
-    const authData = await getAuthenticatedUser();
-    if (!authData) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const { user, email, name, avatar } = authData;
 
     const dbConnected = await checkDatabaseConnection();
     if (!dbConnected) {
@@ -25,7 +19,7 @@ export async function PATCH(req: Request, { params }: RouteParams) {
       );
     }
 
-    const dbUser = await getOrCreateUser(user.id, email, name, avatar);
+    const dbUser = await getOrCreateUser();
 
     const { title } = await req.json();
 
@@ -68,12 +62,6 @@ export async function PATCH(req: Request, { params }: RouteParams) {
 export async function DELETE(req: Request, { params }: RouteParams) {
   try {
     const { id } = await params;
-    const authData = await getAuthenticatedUser();
-    if (!authData) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const { user, email, name, avatar } = authData;
 
     const dbConnected = await checkDatabaseConnection();
     if (!dbConnected) {
@@ -83,7 +71,7 @@ export async function DELETE(req: Request, { params }: RouteParams) {
       );
     }
 
-    const dbUser = await getOrCreateUser(user.id, email, name, avatar);
+    const dbUser = await getOrCreateUser();
 
     const chat = await prisma.chat.findFirst({
       where: {

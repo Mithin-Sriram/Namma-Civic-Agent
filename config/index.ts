@@ -1,8 +1,7 @@
 const config = {
-  appName: "CivicLens",
+  appName: "Namma-Civic-Agent",
   appDescription: "Bringing clarity to public services for everyone.",
-  appUrl: process.env.NEXT_PUBLIC_APP_URL || "https://tryciviclens.vercel.app",
-  adminEmails: ["ashutoshj887@gmail.com"],
+  appUrl: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
   founder: {
     name: "Ashutosh",
     social: {
@@ -14,7 +13,7 @@ const config = {
   },
   landing: {
     hero: {
-      title: "CivicLens",
+      title: "Namma-Civic-Agent",
       subheading:
         "Ask natural questions about public schemes, rights, or benefits and get clear, actionable answers in plain language.",
       searchPlaceholder: "Ask about any public service…",
@@ -35,19 +34,19 @@ const config = {
         { label: "Contact", href: "/contact" }
       ],
       disclaimer:
-        "CivicLens does not provide legal advice. For binding interpretations, consult official authorities or legal professionals."
+        "Namma-Civic-Agent does not provide legal advice. For binding interpretations, consult official authorities or legal professionals."
     }
   },
   pages: {
     disclaimer: {
       title: "Disclaimer",
-      subtitle: "Important information about the use of CivicLens",
-      description: "Legal disclaimer and terms of use for CivicLens",
+      subtitle: "Important information about the use of Namma-Civic-Agent",
+      description: "Legal disclaimer and terms of use for Namma-Civic-Agent",
       content: {
         sections: [
           {
             title: "General Information",
-            text: "CivicLens provides general information about public services. Information is for guidance only and not legal or professional advice."
+            text: "Namma-Civic-Agent provides general information about public services. Information is for guidance only and not legal or professional advice."
           },
           {
             title: "Accuracy",
@@ -55,7 +54,7 @@ const config = {
           },
           {
             title: "No Liability",
-            text: "CivicLens is not liable for decisions made based on our information. Users must verify details independently."
+            text: "Namma-Civic-Agent is not liable for decisions made based on our information. Users must verify details independently."
           }
         ]
       }
@@ -63,7 +62,7 @@ const config = {
     privacy: {
       title: "Privacy Policy",
       subtitle: "How we collect, use, and protect your information",
-      description: "Privacy policy and data protection information for CivicLens",
+      description: "Privacy policy and data protection information for Namma-Civic-Agent",
       content: {
         sections: [
           {
@@ -87,7 +86,7 @@ const config = {
     },
     about: {
       title: "About Us",
-      description: "Learn more about CivicLens and our mission",
+      description: "Learn more about Namma-Civic-Agent and our mission",
       content: {
         sections: [
           {
@@ -104,7 +103,7 @@ const config = {
           },
           {
             title: "Transparency",
-            text: "We're transparent about limitations. CivicLens provides guidance, not official consultations or legal advice."
+            text: "We're transparent about limitations. Namma-Civic-Agent provides guidance, not official consultations or legal advice."
           }
         ]
       }
@@ -112,7 +111,7 @@ const config = {
     contact: {
       title: "Contact Us",
       subtitle: "Have questions or feedback? Reach out to us on social media or visit our website.",
-      description: "Get in touch with the CivicLens team. Reach out to us on LinkedIn, Twitter, GitHub, or visit our website.",
+      description: "Get in touch with the Namma-Civic-Agent team. Reach out to us on LinkedIn, Twitter, GitHub, or visit our website.",
       content: {
         heading: "Connect with the Founder",
         descriptionTemplate: "Feel free to reach out to {founderName} on any of these platforms:",

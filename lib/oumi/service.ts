@@ -1,6 +1,6 @@
 import { OUMI_CONFIG } from "@/config/oumi";
-import { openAIChatCompletion } from "@/lib/ai/openai";
-import type { AIMessage } from "@/lib/ai/openai";
+import { openRouterChatCompletion } from "@/lib/ai/openrouter";
+import type { AIMessage } from "@/lib/ai/openrouter";
 
 export interface OumiQueryRequest {
   query: string;
@@ -10,7 +10,7 @@ export interface OumiQueryRequest {
 
 export interface OumiQueryResponse {
   response: string;
-  model: "oumi" | "openai";
+  model: "oumi" | "openrouter";
   timestamp: Date;
 }
 
@@ -30,7 +30,7 @@ export async function queryOumiModel(
         timestamp: new Date(),
       };
     } catch (error) {
-      console.error("Oumi model query failed, falling back to OpenAI:", error);
+      console.error("Oumi model query failed, falling back to OpenRouter:", error);
     }
   }
 
@@ -49,11 +49,11 @@ export async function queryOumiModel(
     },
   ];
 
-  const response = await openAIChatCompletion({ messages });
+  const response = await openRouterChatCompletion({ messages });
 
   return {
     response,
-    model: "openai",
+    model: "openrouter",
     timestamp: new Date(),
   };
 }

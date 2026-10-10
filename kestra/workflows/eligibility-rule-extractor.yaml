@@ -1,5 +1,5 @@
 id: eligibility-rule-extractor
-namespace: civiclens
+namespace: namma-civic-agent
 description: Extract eligibility criteria from scheme PDFs and convert to structured JSON
 
 tasks:
@@ -9,7 +9,7 @@ tasks:
     uri: "{{ inputs.pdf_url }}"
     method: GET
     headers:
-      User-Agent: CivicLens-Bot/1.0
+      User-Agent: Namma-Civic-Agent-Bot/1.0
       Accept: application/pdf
     timeout: PT2M
     store: true

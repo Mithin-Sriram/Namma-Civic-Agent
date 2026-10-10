@@ -1,7 +1,7 @@
 import { ChatsSidebar } from "@/components/app/ChatsSidebar";
 import { ChatEmptyState } from "@/components/app/ChatEmptyState";
 import { prisma } from "@/lib/prisma";
-import { checkDatabaseConnection, getOrCreateUser, getAuthenticatedUser } from "@/lib/db";
+import { checkDatabaseConnection, getOrCreateUser } from "@/lib/db";
 import { redirect } from "next/navigation";
 import { CHAT_CONFIG } from "@/config/chat";
 
@@ -12,12 +12,6 @@ interface ChatsPageProps {
 export default async function ChatsPage({ searchParams }: ChatsPageProps) {
   const params = await searchParams;
   const query = params.q;
-  const authData = await getAuthenticatedUser();
-  if (!authData) {
-    redirect("/");
-  }
-
-  const { user, email, name, avatar } = authData;
 
   let dbConnected = false;
   try {
@@ -56,7 +50,7 @@ export default async function ChatsPage({ searchParams }: ChatsPageProps) {
   let dbError = false;
   let errorMessage = "";
   try {
-    dbUser = await getOrCreateUser(user.id, email, name, avatar);
+    dbUser = await getOrCreateUser();
   } catch (error: any) {
     console.error("Error getting or creating user:", error);
     dbError = true;

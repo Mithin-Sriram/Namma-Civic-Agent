@@ -1,20 +1,13 @@
 import { NextResponse } from "next/server";
-import { getAuthenticatedUser, getOrCreateUser } from "@/lib/db";
+import { getOrCreateUser } from "@/lib/db";
 import { prisma } from "@/lib/prisma";
 import { FILE_CONFIG } from "@/config/files";
 
 export async function POST(req: Request) {
   try {
-    const authData = await getAuthenticatedUser();
-    if (!authData) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const { user, email, name, avatar } = authData;
-    
     let dbUser;
     try {
-      dbUser = await getOrCreateUser(user.id, email, name, avatar);
+      dbUser = await getOrCreateUser();
     } catch (error) {
       console.error("Error getting or creating user:", error);
       return NextResponse.json(
@@ -85,4 +78,3 @@ export async function POST(req: Request) {
     );
   }
 }
-

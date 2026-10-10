@@ -1,14 +1,8 @@
 import { NextResponse } from "next/server";
 import { generateDocument } from "@/lib/ai/service";
-import { getAuthenticatedUser } from "@/lib/db";
 
 export async function POST(req: Request) {
   try {
-    const authData = await getAuthenticatedUser();
-    if (!authData) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     const { type, params } = await req.json();
 
     if (!type || !["rti", "complaint", "eligibility_summary"].includes(type)) {
@@ -36,4 +30,3 @@ export async function POST(req: Request) {
     );
   }
 }
-

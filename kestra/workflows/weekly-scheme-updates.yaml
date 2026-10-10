@@ -1,5 +1,5 @@
 id: weekly-scheme-updates
-namespace: civiclens
+namespace: namma-civic-agent
 description: Weekly automated workflow to crawl government portals and update scheme information for multiple countries
 
 tasks:
@@ -12,7 +12,7 @@ tasks:
         uri: https://www.india.gov.in/rss-feeds
         method: GET
         headers:
-          User-Agent: CivicLens-Bot/1.0
+          User-Agent: Namma-Civic-Agent-Bot/1.0
           Accept: application/rss+xml, application/xml, text/xml
         timeout: PT30S
         store: true
@@ -23,7 +23,7 @@ tasks:
         uri: https://www.usa.gov/rss-feeds
         method: GET
         headers:
-          User-Agent: CivicLens-Bot/1.0
+          User-Agent: Namma-Civic-Agent-Bot/1.0
           Accept: application/rss+xml, application/xml, text/xml
         timeout: PT30S
         store: true
@@ -34,7 +34,7 @@ tasks:
         uri: https://www.gov.uk/government/announcements.atom
         method: GET
         headers:
-          User-Agent: CivicLens-Bot/1.0
+          User-Agent: Namma-Civic-Agent-Bot/1.0
           Accept: application/atom+xml, application/xml, text/xml
         timeout: PT30S
         store: true
@@ -45,7 +45,7 @@ tasks:
         uri: https://www.canada.ca/en/services/news.xml
         method: GET
         headers:
-          User-Agent: CivicLens-Bot/1.0
+          User-Agent: Namma-Civic-Agent-Bot/1.0
           Accept: application/rss+xml, application/xml, text/xml
         timeout: PT30S
         store: true
