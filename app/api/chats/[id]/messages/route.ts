@@ -9,6 +9,7 @@ import { lookupTNInfo } from "@/lib/tn-info/service";
 import { isTamilNaduCivicQuestion, searchTamilNaduGovernmentWeb } from "@/lib/web-search/service";
 import { generateCivicWorkflowResponse } from "@/lib/chat-workflow/service";
 import { retrieveRagContext } from "@/lib/rag/retriever";
+import { isCivicRequest, OUT_OF_SCOPE_RESPONSE } from "@/lib/ai/railguard";
 
 interface RouteParams {
   params: Promise<{ id: string }>;
@@ -71,17 +72,25 @@ export async function POST(req: Request, { params }: RouteParams) {
         console.error("Attached file extraction failed:", error);
       }
     }
-    const tnInfoResult = typeof content === "string" && content.trim()
+
+    const conversationHistory = chat.messages.map((msg) => ({
+      role: msg.role as "user" | "assistant",
+      content: msg.content,
+    }));
+    const isInScope = await isCivicRequest(enhancedContent, conversationHistory);
+
+    const tnInfoResult = isInScope && typeof content === "string" && content.trim()
       ? await lookupTNInfo(content)
       : null;
     const webSearchResult =
+      isInScope &&
       typeof content === "string" &&
       isTamilNaduCivicQuestion(content) &&
       tnInfoResult?.attribution.status !== "success"
         ? await searchTamilNaduGovernmentWeb(content)
         : null;
     // RAG retrieval: grounded knowledge base context
-    const ragResult = typeof content === "string" && content.trim()
+    const ragResult = isInScope && typeof content === "string" && content.trim()
       ? await retrieveRagContext(content).catch((ragErr) => {
           console.error("[RAG] Retrieval error (non-fatal):", ragErr);
           return null;
@@ -92,16 +101,12 @@ export async function POST(req: Request, { params }: RouteParams) {
       tnInfoResult?.promptContext,
       webSearchResult?.promptContext,
     ].filter(Boolean).join("\n\n");
-    const workflowResponse = typeof content === "string" &&
-      isTamilNaduCivicQuestion(content)
+    const workflowResponse = isInScope
       ? await generateCivicWorkflowResponse(
           enhancedContent,
           externalContext,
           webSearchResult?.answer ?? "",
-          chat.messages.map((msg) => ({
-            role: msg.role as "user" | "assistant",
-            content: msg.content,
-          }))
+          conversationHistory
         )
       : null;
     const messageMetadata = tnInfoResult || webSearchResult || workflowResponse || ragResult
@@ -145,11 +150,6 @@ export async function POST(req: Request, { params }: RouteParams) {
       where: { id: chat.id },
       data: { updatedAt: new Date() },
     });
-
-    const conversationHistory = chat.messages.map((msg) => ({
-      role: msg.role as "user" | "assistant",
-      content: msg.content,
-    }));
 
     if (stream) {
       const encoder = new TextEncoder();
@@ -233,16 +233,18 @@ export async function POST(req: Request, { params }: RouteParams) {
               );
             }
 
-            const answerStream = workflowResponse
-              ? streamSingleAnswer(workflowResponse.answer)
-              : webSearchResult?.answer
-                ? streamSingleAnswer(webSearchResult.answer)
-              : getChatStream(
-                  enhancedContent,
-                  conversationHistory,
-                  false,
-                  externalContext
-                );
+            const answerStream = !isInScope
+              ? streamSingleAnswer(OUT_OF_SCOPE_RESPONSE)
+              : workflowResponse
+                ? streamSingleAnswer(workflowResponse.answer)
+                : webSearchResult?.answer
+                  ? streamSingleAnswer(webSearchResult.answer)
+                  : getChatStream(
+                      enhancedContent,
+                      conversationHistory,
+                      false,
+                      externalContext
+                    );
 
             for await (const chunk of answerStream) {
               fullContent += chunk;
@@ -296,16 +298,18 @@ export async function POST(req: Request, { params }: RouteParams) {
     }
 
     let fullContent = "";
-    const answerStream = workflowResponse
-      ? streamSingleAnswer(workflowResponse.answer)
-      : webSearchResult?.answer
-        ? streamSingleAnswer(webSearchResult.answer)
-      : getChatStream(
-          enhancedContent,
-          conversationHistory,
-          false,
-          externalContext
-        );
+    const answerStream = !isInScope
+      ? streamSingleAnswer(OUT_OF_SCOPE_RESPONSE)
+      : workflowResponse
+        ? streamSingleAnswer(workflowResponse.answer)
+        : webSearchResult?.answer
+          ? streamSingleAnswer(webSearchResult.answer)
+          : getChatStream(
+              enhancedContent,
+              conversationHistory,
+              false,
+              externalContext
+            );
 
     for await (const chunk of answerStream) {
       fullContent += chunk;
